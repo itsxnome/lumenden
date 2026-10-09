@@ -1,0 +1,71 @@
+:root {
+  /* Surfaces — sampled from getartcraft.com/apps */
+  --bg: #121316;
+  --bg-elevated: #1a1b1f;
+  --bg-ink: #121316;
+  --bg-ink-soft: #1a1b1f;
+  --bg-wash: #1a1b1f;
+  --bg-strong: oklab(0.186962 0.000125498 -0.00628337 / 0.95);
+  --bg-grid: #121316;
+
+  /* Text — Artcraft off-white */
+  --text: #f2f1ee;
+  --text-soft: rgba(242, 241, 238, 0.62);
+  --text-faint: rgba(242, 241, 238, 0.38);
+  --text-on-ink: #f2f1ee;
+  --text-on-ink-soft: rgba(242, 241, 238, 0.62);
+  --text-invert: #121316;
+
+  /* Accent */
+  --accent: #6a9eff;
+  --accent-bright: #8eb6ff;
+  --accent-wash: rgba(106, 158, 255, 0.16);
+  --accent-teal: #2dd4bf;
+
+  /* Borders — Artcraft border-line ≈ 0.15 */
+  --line: rgba(242, 241, 238, 0.15);
+  --line-strong: rgba(242, 241, 238, 0.22);
+  --line-on-ink: rgba(242, 241, 238, 0.15);
+  --border: #f2f1ee;
+
+  --fs-xs: 0.6875rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: clamp(2.25rem, 4vw, 3.75rem);
+  --fs-4xl: clamp(2.75rem, 6vw, 4.5rem);
+  --fs-5xl: clamp(3.25rem, 9vw, 5.25rem);
+
+  --s-1: 6px;
+  --s-2: 8px;
+  --s-3: 10px;
+  --s-4: 12px;
+  --s-5: 16px;
+  --s-6: 20px;
+  --s-7: 24px;
+  --s-8: 32px;
+  --s-9: 48px;
+  --s-10: 72px;
+  --s-11: 96px;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-pill: 999px;
+
+  --shadow-soft: none;
+  --shadow-hover: none;
+  --shadow-ink: none;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+
+  --max: 1280px;
+  --frame-gutter: clamp(1rem, 3vw, 2.5rem);
+  --header-h: 56px;
+}

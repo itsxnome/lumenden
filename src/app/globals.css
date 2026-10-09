@@ -1,33 +1,83 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/tokens.css";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(242, 241, 238, 0.28) transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: rgba(242, 241, 238, 0.22);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(242, 241, 238, 0.4);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Custom ruler replaces the native bar on desktop — no double scrollbar */
+html[data-ruler="on"] {
+  scrollbar-width: none;
+}
+
+html[data-ruler="on"]::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* Ruler floats in the side margin — never pad body (that shoved layout left) */
+html[data-ruler="on"] body {
+  padding-right: 0;
+}
+
+html {
+  overflow-x: clip;
+}
+
+body {
+  --font-body: var(--font-sans), Archivo, system-ui, sans-serif;
+  --font-display: var(--font-sans), Archivo, system-ui, sans-serif;
+  --font-code: var(--font-mono), ui-monospace, Menlo, monospace;
+
   margin: 0;
+  min-height: 100dvh;
+  overflow-x: clip;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+img,
+video {
+  display: block;
+  max-width: 100%;
 }
 
 a {
@@ -35,8 +85,248 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(106, 158, 255, 0.35);
+  color: var(--text);
+}
+
+.skipLink {
+  position: absolute;
+  left: var(--s-4);
+  top: -80px;
+  z-index: 100;
+  padding: var(--s-2) var(--s-4);
+  background: var(--text);
+  color: var(--text-invert);
+  border-radius: var(--radius-md);
+}
+
+.skipLink:focus-visible {
+  top: var(--s-4);
+}
+
+.shell {
+  width: min(calc(100% - 2 * var(--frame-gutter)), var(--max));
+  margin-inline: auto;
+}
+
+.page {
+  padding-block: 0 var(--s-11);
+}
+
+.section {
+  margin-top: 0;
+  border-top: 1px solid var(--line);
+}
+
+.sectionPad {
+  padding-block: clamp(2.75rem, 6vw, 5rem);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-6);
+  margin-bottom: var(--s-7);
+}
+
+.sectionRail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-7);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.kickerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+.accent {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.h1 {
+  font-family: var(--font-body);
+  font-size: var(--fs-5xl);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.h2 {
+  font-family: var(--font-body);
+  font-size: var(--fs-3xl);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.h3 {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.lede {
+  max-width: 48ch;
+  color: var(--text-soft);
+  font-size: var(--fs-lg);
+  line-height: 1.55;
+}
+
+.muted {
+  color: var(--text-soft);
+}
+
+.faint {
+  color: var(--text-faint);
+}
+
+.prose {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 62ch;
+  color: var(--text-soft);
+  font-size: var(--fs-md);
+  line-height: 1.7;
+}
+
+.prose strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.55rem;
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  color: var(--text-soft);
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.span7 { grid-column: span 7; }
+.span5 { grid-column: span 5; }
+.span6 { grid-column: span 6; }
+.span4 { grid-column: span 4; }
+.span8 { grid-column: span 8; }
+.span12 { grid-column: span 12; }
+
+.rise {
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.riseDelay1 { animation-delay: 60ms; }
+.riseDelay2 { animation-delay: 120ms; }
+.riseDelay3 { animation-delay: 180ms; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .shell {
+    width: min(100% - 1.25rem, var(--max));
+  }
+
+  .span7,
+  .span5,
+  .span6,
+  .span4,
+  .span8 {
+    grid-column: span 12;
+  }
+
+  .sectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page {
+    padding-block: 0 var(--s-9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
