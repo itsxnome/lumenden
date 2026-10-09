@@ -16,11 +16,12 @@
   --text-on-ink-soft: rgba(242, 241, 238, 0.62);
   --text-invert: #121316;
 
-  /* Accent */
-  --accent: #6a9eff;
-  --accent-bright: #8eb6ff;
-  --accent-wash: rgba(106, 158, 255, 0.16);
+  /* Accent — ink, not glow */
+  --accent: #7a9eff;
+  --accent-bright: #9bb6ff;
+  --accent-wash: rgba(122, 158, 255, 0.12);
   --accent-teal: #2dd4bf;
+  --ink-warm: #e8e2d6;
 
   /* Borders — Artcraft border-line ≈ 0.15 */
   --line: rgba(242, 241, 238, 0.15);

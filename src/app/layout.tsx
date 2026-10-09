@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import { ScrollRuler } from "@/components/ScrollRuler";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -16,6 +16,13 @@ const mono = IBM_Plex_Mono({
   weight: ["400", "500"],
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const display = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -43,7 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sans.className} ${sans.variable} ${mono.variable}`}>
+      <body
+        className={`${sans.className} ${sans.variable} ${mono.variable} ${display.variable}`}
+      >
         <a className="skipLink" href="#main">
           Skip to content
         </a>

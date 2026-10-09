@@ -57,7 +57,7 @@ html {
 
 body {
   --font-body: var(--font-sans), Archivo, system-ui, sans-serif;
-  --font-display: var(--font-sans), Archivo, system-ui, sans-serif;
+  --font-display: var(--font-serif), "Instrument Serif", Georgia, serif;
   --font-code: var(--font-mono), ui-monospace, Menlo, monospace;
 
   margin: 0;
@@ -171,7 +171,7 @@ ol {
 .kicker {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   font-family: var(--font-code);
   font-size: var(--fs-xs);
   font-weight: 500;
@@ -185,11 +185,19 @@ ol {
   height: 6px;
   border-radius: 1px;
   background: var(--accent);
+  box-shadow: none;
 }
 
 .accent {
   color: var(--accent);
   font-style: normal;
+}
+
+.displayName {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-style: italic;
 }
 
 .h1 {

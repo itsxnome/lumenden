@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { nav, site } from "@/data/site";
 import { Button } from "./Button";
+import { Stamp } from "./Stamp";
 import styles from "./ui.module.css";
 
 export function SiteHeader() {
@@ -27,6 +28,7 @@ export function SiteHeader() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.brand} aria-label={`${site.brand} home`}>
+          <Stamp size="sm" />
           Lumen<span className={styles.brandMark}>den</span>
         </Link>
 

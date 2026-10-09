@@ -1,15 +1,21 @@
 import Link from "next/link";
 import { nav, site } from "@/data/site";
+import { Stamp } from "./Stamp";
 import styles from "./ui.module.css";
 
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
       <div className="shell">
         <div className={styles.footerGrid}>
           <div>
             <div className={styles.footerBrand}>
-              Lumen<span className={styles.brandMark}>den</span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <Stamp size="md" />
+                Lumen<span className={styles.brandMark}>den</span>
+              </span>
             </div>
             <p className="muted" style={{ marginTop: 12, maxWidth: "34ch" }}>
               {site.name}&apos;s portfolio — backend, Shopify, WhatsApp, and automation
@@ -38,9 +44,15 @@ export function SiteFooter() {
         </div>
         <div className={styles.footerMeta}>
           <span>
-            © {new Date().getFullYear()} {site.brand}
+            © {year} {site.brand}
           </span>
           <span>{site.location}</span>
+        </div>
+        <div className={styles.colophon}>
+          <span>Colophon</span>
+          <span>Set in Archivo + Instrument Serif + IBM Plex Mono</span>
+          <span>Crafted for lumenden.com</span>
+          <span>Last pushed {year}</span>
         </div>
       </div>
     </footer>

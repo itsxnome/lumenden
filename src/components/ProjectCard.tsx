@@ -18,17 +18,18 @@ export function ProjectCard({
   sized = true,
   index,
   variant = "grid",
-  accent = "#6a9eff",
+  accent = "#7a9eff",
+  featured = false,
 }: {
   project: Project;
   sized?: boolean;
   index?: number;
   variant?: "grid" | "slide" | "lineup";
   accent?: string;
+  featured?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isLineup = variant === "lineup";
-  // index kept for callers; numbering removed to feel less template-y
   void index;
 
   return (
@@ -44,7 +45,7 @@ export function ProjectCard({
               : styles.libraryCard,
         styles.card,
         isLineup ? styles.cardLineup : "",
-        "rise",
+        featured ? styles.lineupFeatured : "",
       ]
         .filter(Boolean)
         .join(" ")}
