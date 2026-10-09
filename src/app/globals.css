@@ -316,8 +316,40 @@ ol {
     align-items: flex-start;
   }
 
+  .sectionRail {
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
   .page {
     padding-block: 0 var(--s-9);
+  }
+
+  .h1 {
+    font-size: clamp(2.1rem, 9vw, 3.25rem);
+  }
+
+  .h2 {
+    font-size: clamp(1.65rem, 6vw, 2.25rem);
+  }
+
+  .lede {
+    font-size: var(--fs-md);
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --frame-gutter: 0.85rem;
+  }
+
+  .shell {
+    width: min(100% - 1rem, var(--max));
+  }
+
+  .sectionPad {
+    padding-block: 2rem;
   }
 }
 
