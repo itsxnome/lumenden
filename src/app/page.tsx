@@ -8,38 +8,14 @@ import { SectionNav } from "@/components/SectionNav";
 import styles from "@/components/ui.module.css";
 import { projects, site } from "@/data/site";
 
-/** Real product frames only — no generated mascot tiles */
+/** Craft monograms — one visual system, no AI mascots / random screenshots */
 const iconTiles = [
-  {
-    code: "EC",
-    label: "EasyCloudAPI",
-    icon: "/work/easycloud/inbox.png",
-    href: "/work/easycloudapi",
-  },
-  {
-    code: "YT",
-    label: "YouTube factory",
-    icon: "/work/generated/yt-ui-1.png",
-    href: "/work/yt-content-factory",
-  },
-  {
-    code: "SH",
-    label: "Shopify apps",
-    icon: "/work/shopify/automation.png",
-    href: "/work/shopify-apps",
-  },
-  {
-    code: "LM",
-    label: "Lumenden",
-    icon: "/work/lumenden/ui-1.jpg",
-    href: "/work/lumenden",
-  },
-  {
-    code: "MO",
-    label: "Motion skill",
-    icon: "/work/motion/welcome-poster.jpg",
-    href: "/work/motion-graphics-skill",
-  },
+  { code: "EC", label: "EasyCloud", href: "/work/easycloudapi", accent: "#6a9eff", mark: "◈" },
+  { code: "YT", label: "YT factory", href: "/work/yt-content-factory", accent: "#f87171", mark: "▶" },
+  { code: "SH", label: "Shopify", href: "/work/shopify-apps", accent: "#34d399", mark: "▣" },
+  { code: "CB", label: "CodeBuddy", href: "/work/codebuddy", accent: "#a78bfa", mark: "⌘" },
+  { code: "VX", label: "Voice AI", href: "/work/voice-ai-saas", accent: "#2dd4bf", mark: "◎" },
+  { code: "RG", label: "RAG", href: "/work/rag-systems", accent: "#fbbf24", mark: "⇄" },
 ] as const;
 
 export default function HomePage() {
@@ -82,9 +58,15 @@ export default function HomePage() {
 
           <div className={styles.iconRail} aria-label="Selected projects">
             {iconTiles.map((tile) => (
-              <Link key={tile.code} href={tile.href} className={styles.iconTile}>
-                <span className={styles.iconTileMark}>
-                  <Image src={tile.icon} alt="" width={80} height={80} />
+              <Link
+                key={tile.code}
+                href={tile.href}
+                className={styles.iconTile}
+                style={{ ["--tile-accent" as string]: tile.accent }}
+              >
+                <span className={styles.iconTileMark} aria-hidden>
+                  <span className={styles.iconTileGlyph}>{tile.mark}</span>
+                  <span className={styles.iconTileCode}>{tile.code}</span>
                 </span>
                 <span className={styles.iconTileName}>{tile.label}</span>
               </Link>
