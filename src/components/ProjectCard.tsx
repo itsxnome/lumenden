@@ -27,8 +27,9 @@ export function ProjectCard({
   accent?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const num = typeof index === "number" ? String(index + 1).padStart(2, "0") : null;
   const isLineup = variant === "lineup";
+  // index kept for callers; numbering removed to feel less template-y
+  void index;
 
   return (
     <Link
@@ -63,7 +64,6 @@ export function ProjectCard({
     >
       {isLineup ? (
         <div className={styles.lineupLabel}>
-          <span className={styles.lineupNum}>{num}</span>
           <span className={styles.lineupCat}>{project.eyebrow}</span>
         </div>
       ) : null}
@@ -93,24 +93,15 @@ export function ProjectCard({
       </div>
 
       <div className={styles.cardBody}>
-        {!isLineup ? (
-          <div className={styles.cardMeta}>
-            {num ? <span className={styles.cardIndex}>{num}</span> : null}
-            <span className={styles.badge}>{project.category}</span>
-            <span className={`${styles.badge} ${styles.badgeAccent}`}>{project.status}</span>
-          </div>
-        ) : (
-          <div className={styles.cardMeta}>
-            <span className={styles.badge}>{project.category}</span>
-            <span className={`${styles.badge} ${styles.badgeAccent}`}>{project.status}</span>
-          </div>
-        )}
+        <div className={styles.cardMeta}>
+          <span className={styles.badge}>{project.category}</span>
+          <span className={`${styles.badge} ${styles.badgeAccent}`}>{project.status}</span>
+        </div>
         <h3 className={styles.cardTitle}>{project.title}</h3>
         <p className={styles.cardSummary}>{project.summary}</p>
         <p className={styles.cardImpact}>{project.impact}</p>
         <span className={styles.cardCta}>
-          Explore {isLineup ? project.title.split(" ")[0] : "case"}{" "}
-          <span aria-hidden>↗</span>
+          Read more <span aria-hidden>↗</span>
         </span>
       </div>
     </Link>

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { WorkFilters } from "@/components/WorkFilters";
-import { projects } from "@/data/site";
+import { projects, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Work",
-  description:
-    "Selected AI products, automation systems, motion pipelines, and Shopify work by Saad Fazal.",
+  description: `Selected projects by ${site.name} — Shopify, WhatsApp, automation, and product work.`,
 };
 
 export default function WorkPage() {
@@ -15,16 +14,16 @@ export default function WorkPage() {
         <div className="sectionRail">
           <p className="kicker">
             <span className="kickerDot" aria-hidden />
-            01 / Work
+            Work
           </p>
-          <p className="kicker">{projects.length} projects · curated</p>
+          <p className="kicker">{projects.length} projects</p>
         </div>
         <h1 className="h1">
-          Work <span className="accent">library.</span>
+          Project <span className="accent">index.</span>
         </h1>
         <p className="lede" style={{ marginTop: 16 }}>
-          Filter by category. Every card opens a full project page with context, impact,
-          and outputs when available.
+          Filter by type. Each card opens a write-up with what I built and how it hangs
+          together.
         </p>
         <div style={{ marginTop: 32 }}>
           <WorkFilters projects={projects} />

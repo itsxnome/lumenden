@@ -27,7 +27,7 @@ export function HeroLinks() {
 
   return (
     <div className={styles.heroLinks} aria-label="Quick links">
-      <span className={styles.heroLinksLabel}>Reach</span>
+      <span className={styles.heroLinksLabel}>Links</span>
       <button type="button" className={styles.heroLink} onClick={copyEmail}>
         {copied ? "Copied" : "Copy email"}
       </button>

@@ -6,7 +6,7 @@ import { focusItems, getProject, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Now",
-  description: `What ${site.name} is shipping: YouTube factories, RAG, WhatsApp bots, voice AI.`,
+  description: `What ${site.name} is working on right now.`,
 };
 
 export default function NowPage() {
@@ -20,15 +20,16 @@ export default function NowPage() {
         <div className="sectionRail">
           <p className="kicker">
             <span className="kickerDot" aria-hidden />
-            01 / Now
+            Now
           </p>
-          <p className="kicker">Active work</p>
+          <p className="kicker">This week</p>
         </div>
         <h1 className="h1">
-          Now <span className="accent">shipping.</span>
+          What I&apos;m on <span className="accent">now.</span>
         </h1>
         <p className="lede" style={{ marginTop: 16 }}>
-          What I&apos;m building across content factories, RAG, and bots. Not archive work.
+          Active builds and client work — not an archive of everything I&apos;ve ever
+          touched.
         </p>
 
         <div className={`${styles.split2} section`}>
@@ -38,7 +39,7 @@ export default function NowPage() {
               Focus
             </p>
             <h2 className="h3" style={{ marginTop: 10 }}>
-              Currently in motion
+              On my plate
             </h2>
             <ul className={styles.list} style={{ marginTop: 18 }}>
               {focusItems.map((item) => (
@@ -50,15 +51,15 @@ export default function NowPage() {
             </ul>
           </div>
           <div className={styles.panel}>
-            <h2 className="h3">Why it matters</h2>
+            <h2 className="h3">How I like to work</h2>
             <div className="prose" style={{ marginTop: 12 }}>
               <p>
-                Full pipelines, not demos: topic→video factories, retrieval that cites
-                sources, WhatsApp bots with ACL, and voice products with real dashboards.
+                I&apos;d rather own a full pipeline than polish a demo. If something has
+                to talk to Shopify, WhatsApp, a CRM, and a dashboard, that&apos;s usually
+                where I fit.
               </p>
               <p>
-                If you need someone who owns AI + automation end-to-end, this is the current
-                proof stream.
+                If that sounds like your problem, email me — I read every note.
               </p>
             </div>
             <div style={{ marginTop: 20 }}>
@@ -72,10 +73,10 @@ export default function NowPage() {
         <section className="section" aria-labelledby="now-projects">
           <div className="sectionHead">
             <h2 id="now-projects" className="h2">
-              Related project pages
+              Related write-ups
             </h2>
             <Button href="/work" variant="secondary">
-              Full library
+              All projects
             </Button>
           </div>
           <div className="bento">

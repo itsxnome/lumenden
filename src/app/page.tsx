@@ -8,48 +8,37 @@ import { SectionNav } from "@/components/SectionNav";
 import styles from "@/components/ui.module.css";
 import { projects, site } from "@/data/site";
 
+/** Real product frames only — no generated mascot tiles */
 const iconTiles = [
+  {
+    code: "EC",
+    label: "EasyCloudAPI",
+    icon: "/work/easycloud/inbox.png",
+    href: "/work/easycloudapi",
+  },
   {
     code: "YT",
     label: "YouTube factory",
-    icon: "/work/icons/yt.jpg",
+    icon: "/work/generated/yt-ui-1.png",
     href: "/work/yt-content-factory",
   },
   {
-    code: "CB",
-    label: "CodeBuddy",
-    icon: "/work/icons/cb.jpg",
-    href: "/work/codebuddy",
-  },
-  {
-    code: "RG",
-    label: "RAG systems",
-    icon: "/work/icons/rg.jpg",
-    href: "/work/rag-systems",
-  },
-  {
-    code: "VX",
-    label: "Voice AI",
-    icon: "/work/icons/vx.jpg",
-    href: "/work/voice-ai-saas",
-  },
-  {
-    code: "WA",
-    label: "WhatsApp bots",
-    icon: "/work/generated/whatsapp-bots.jpg",
-    href: "/work/whatsapp-bots",
+    code: "SH",
+    label: "Shopify apps",
+    icon: "/work/shopify/automation.png",
+    href: "/work/shopify-apps",
   },
   {
     code: "LM",
     label: "Lumenden",
-    icon: "/work/lumenden/avatar.jpg",
+    icon: "/work/lumenden/ui-1.jpg",
     href: "/work/lumenden",
   },
   {
-    code: "EC",
-    label: "EasyCloud",
-    icon: "/work/easycloud/feature.jpg",
-    href: "/work/easycloudapi",
+    code: "MO",
+    label: "Motion skill",
+    icon: "/work/motion/welcome-poster.jpg",
+    href: "/work/motion-graphics-skill",
   },
 ] as const;
 
@@ -64,43 +53,43 @@ export default function HomePage() {
           <div className={styles.heroTop}>
             <p className="kicker">
               <span className="kickerDot" aria-hidden />
-              01 / Portfolio
+              Portfolio
             </p>
-            <p className="kicker">
-              {site.name} · 6+ yrs · Remote
-            </p>
+            <p className="kicker">Open to remote · 6+ years</p>
           </div>
 
           <div className={`${styles.heroCopy} rise`}>
             <p className={styles.heroEyebrow}>{site.role}</p>
             <h1 id="home-title" className={styles.heroTitle}>
-              Systems that <em>ship.</em>
+              Hi — I&apos;m <em>Saad.</em>
             </h1>
             <p className={styles.heroRole}>
-              Selected work by {site.name} — YouTube factories, RAG systems, WhatsApp
-              bots, voice agents, and the automation glue that keeps them shipping.
+              I build backends, Shopify apps, WhatsApp systems, and automations that stay
+              up after launch. Recent work includes Vulgrco&apos;s custom product reorder
+              (Shopify has no native path for that), EasyCloudAPI, and delivery for Flaxen
+              Media and Disruptive Brain.
             </p>
             <div className={styles.heroActions}>
               <Button href="/work" variant="primary">
-                Explore work
+                See my work
               </Button>
               <Button href="/contact" variant="secondary">
-                Start a conversation
+                Email me
               </Button>
             </div>
             <HeroLinks />
           </div>
 
-        <div className={styles.iconRail} aria-label="Selected systems">
-          {iconTiles.map((tile) => (
-            <Link key={tile.code} href={tile.href} className={styles.iconTile}>
-              <span className={styles.iconTileMark}>
-                <Image src={tile.icon} alt="" width={80} height={80} />
-              </span>
-              <span className={styles.iconTileName}>{tile.label}</span>
-            </Link>
-          ))}
-        </div>
+          <div className={styles.iconRail} aria-label="Selected projects">
+            {iconTiles.map((tile) => (
+              <Link key={tile.code} href={tile.href} className={styles.iconTile}>
+                <span className={styles.iconTileMark}>
+                  <Image src={tile.icon} alt="" width={80} height={80} />
+                </span>
+                <span className={styles.iconTileName}>{tile.label}</span>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <section
@@ -112,15 +101,15 @@ export default function HomePage() {
             <div>
               <p className="kicker">
                 <span className="kickerDot" aria-hidden />
-                02 / The lineup
+                Selected work
               </p>
               <h2 id="featured-title" className="h2" style={{ marginTop: 14 }}>
-                Featured systems.
+                Things I&apos;ve shipped.
               </h2>
             </div>
             <p className={styles.lineupAside}>
-              Pick a system to explore. Media above, story below. Open any case
-              for the full pipeline.
+              Real projects with pipelines, not slide decks. Open a card for how it was
+              built.
             </p>
           </div>
           <FeaturedRail projects={featured} />
@@ -135,14 +124,14 @@ export default function HomePage() {
             <div>
               <p className="kicker">
                 <span className="kickerDot" aria-hidden />
-                03 / Library
+                More
               </p>
               <h2 id="more-title" className="h2" style={{ marginTop: 14 }}>
-                From the library.
+                Also worth a look.
               </h2>
             </div>
             <Button href="/work" variant="secondary">
-              View all work
+              All projects
             </Button>
           </div>
           <div className={styles.libraryGrid}>
@@ -166,31 +155,32 @@ export default function HomePage() {
             <div className={styles.hireCopy}>
               <p className="kicker">
                 <span className="kickerDot" aria-hidden />
-                04 / Hire
+                Hire
               </p>
               <h2 id="cta-title" className={styles.hireTitle}>
-                Need AI systems that actually run?
+                Got a messy problem to ship?
               </h2>
               <p className={styles.hireLede}>
-                RAG pipelines, WhatsApp bots, voice agents, and automation. Backend
-                through product surface.
+                I&apos;m strongest when the work spans backend, integrations, and the
+                product surface — Shopify, WhatsApp, automations, or AI that has to cite
+                sources.
               </p>
               <div className={styles.heroActions}>
                 <Button href="/contact" variant="primary">
-                  Start a conversation
+                  Get in touch
                 </Button>
                 <Button href="/experience" variant="secondary">
-                  See experience
+                  Experience
                 </Button>
               </div>
             </div>
             <div className={styles.hireVisual} aria-hidden>
               <Image
-                src="/work/generated/hire-visual.jpg"
+                src="/work/easycloud/inbox.png"
                 alt=""
                 fill
                 sizes="(max-width: 900px) 100vw, 42vw"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", objectPosition: "top left" }}
               />
             </div>
           </div>

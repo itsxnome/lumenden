@@ -52,16 +52,16 @@ export default function ExperiencePage() {
         <div className="sectionRail">
           <p className="kicker">
             <span className="kickerDot" aria-hidden />
-            01 / Experience
+            Experience
           </p>
           <p className="kicker">6+ years</p>
         </div>
         <h1 className="h1">
-          Experience <span className="accent">path.</span>
+          Where I&apos;ve <span className="accent">worked.</span>
         </h1>
         <p className="lede" style={{ marginTop: 16 }}>
-          Employment tracks by work type, plus own products like EasyCloudAPI and the AI
-          systems on this site.
+          Same companies, different kinds of work — Shopify, backend, automation — plus
+          products I built myself like EasyCloudAPI.
         </p>
 
         <div className={`${styles.panel} section`}>

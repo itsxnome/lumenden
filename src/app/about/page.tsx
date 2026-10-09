@@ -5,7 +5,7 @@ import { education, site, stack } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${site.name} - automation, backend, AI systems, and Shopify development.`,
+  description: `About ${site.name} — backend, Shopify, WhatsApp, and automation.`,
 };
 
 export default function AboutPage() {
@@ -15,7 +15,7 @@ export default function AboutPage() {
         <div className="sectionRail">
           <p className="kicker">
             <span className="kickerDot" aria-hidden />
-            01 / About
+            About
           </p>
           <p className="kicker">{site.location}</p>
         </div>
@@ -23,25 +23,26 @@ export default function AboutPage() {
           Saad <span className="accent">Fazal.</span>
         </h1>
         <p className="lede" style={{ marginTop: 16 }}>
-          {site.role}. {site.location}.
+          {site.role}. Based remote. Six-plus years shipping for clients and my own products.
         </p>
 
         <div className={`${styles.split2} section`}>
           <div>
             <div className="prose">
               <p>
-                I&apos;m an automation and backend developer with 6+ years shipping web apps,
-                Shopify tooling, workflow systems, and AI products that businesses actually
-                run on.
+                I started as a web intern at Flaxen Media, moved into backend and
+                automations, and now split time between Shopify work at Disruptive Brain
+                and building products like EasyCloudAPI.
               </p>
               <p>
-                Day-to-day: YouTube content factories (topic→script→media→song→video), RAG
-                systems, WhatsApp bots (including CodeBuddy), voice agents, GHL flows, and
-                Claude motion skills.
+                The work people hire me for is usually messy: store data that has to leave
+                Shopify, WhatsApp that has to hit CRM on time, or a reorder flow the
+                platform doesn&apos;t support (Vulgrco). I like owning that end-to-end.
               </p>
               <p>
-                This site is branded <strong>{site.brand}</strong>, named after the prompt
-                library project, and collects the systems that matter for hiring.
+                <strong>{site.brand}</strong> is this portfolio — named after a prompt
+                library I built. It&apos;s here so hiring managers can see the systems,
+                not just a résumé list.
               </p>
               <div className="stack" style={{ marginTop: 8 }}>
                 <Button href="/work" variant="primary">
@@ -73,7 +74,7 @@ export default function AboutPage() {
               ))}
             </ul>
             <h3 className="h3" style={{ marginTop: 28, fontSize: "1.15rem" }}>
-              Toolkit
+              Tools I use most
             </h3>
             <div className="stack" style={{ marginTop: 12 }}>
               {stack.map((item) => (

@@ -1,11 +1,11 @@
 export const site = {
   brand: "Lumenden",
   name: "Saad Fazal",
-  role: "Automation & Backend Developer · AI Systems",
+  role: "Backend & automation developer",
   email: "saadfl2000@gmail.com",
   location: "Open to remote",
   tagline:
-    "Portfolio of Saad Fazal — end-to-end AI pipelines: YouTube factories, RAG systems, WhatsApp bots, voice agents, and the glue that keeps them shipping.",
+    "Saad Fazal — backend, Shopify, WhatsApp, and automation work that stays up after launch. Portfolio at Lumenden.",
   links: {
     email: "mailto:saadfl2000@gmail.com",
     linkedin: "https://www.linkedin.com/in/mrsaadfazal1",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     title: "YouTube content factory",
     eyebrow: "Topic → finished video",
     summary:
-      "Give it a topic (or lyrics) and it runs the full loop: script, images, animation prompts, songs, then a combined video, start to finish.",
+      "A production app for small YouTube channels: type a topic, get script, song, images, and animation prompts packaged for edit.",
     overview:
       "Built a multi-step production app for small YouTube / kids channels. One input kicks off song generation, duration-aware image prompts, style-locked image batches, per-verse video prompts, then packaging for final edit, with project save, resume, and ZIP export.",
     pipeline: [
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     title: "CodeBuddy",
     eyebrow: "WhatsApp AI bot",
     summary:
-      "WhatsApp bot with admin allowlist, AI chat, model switching, and group /ask: personal coding and ops buddy on WhatsApp Web.",
+      "My personal WhatsApp coding buddy — allowlisted numbers, model switching, and /ask in groups so it doesn’t spam.",
     overview:
       "Shipped a whatsapp-web.js bot with QR session auth, admin/allowlist ACL, command router, and Requesty-routed AI chat (free models + optional web search). Built for DMs and groups without spamming every message.",
     pipeline: [
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     title: "Lumenden",
     eyebrow: "Prompt library",
     summary:
-      "Largest prompt library I’ve built: 100k+ prompts, skills, and reusable AI workflows for discovery and reuse.",
+      "A searchable library of 100k+ prompts and skills I built so the collection stays useful instead of a dump of folders.",
     overview:
       "Productized a library-scale prompt + skills surface: indexing, categorization, and discovery UX so high-volume collections stay searchable instead of dumped into folders.",
     pipeline: [
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     title: "RAG knowledge systems",
     eyebrow: "Retrieval + generation",
     summary:
-      "Document ingestion, chunking, embeddings, and grounded Q&A over private knowledge, built for support, ops, and internal tools.",
+      "Private knowledge Q&A that has to cite the right doc — support, ops, and internal tools where guessing is expensive.",
     overview:
       "Designed retrieval stacks where answers must cite sources: ingest → chunk → embed → rank → generate with grounding. Aimed at support bots and internal assistants that can’t invent policy.",
     pipeline: [
@@ -437,39 +437,33 @@ export const education = [
 ] as const;
 
 export const stack = [
-  "Python",
-  "JavaScript",
   "Node.js",
+  "Python",
   "React",
-  "RAG",
-  "WhatsApp bots",
-  "Cloud API",
-  "YouTube pipelines",
-  "n8n / Make / Zapier",
-  "Shopify apps",
-  "Voice AI",
-  "GHL",
-  "Claude skills",
-  "MongoDB",
+  "Shopify",
   "Postgres",
+  "MongoDB",
+  "n8n / Make",
+  "WhatsApp Cloud API",
+  "Meta APIs",
 ] as const;
 
 export const focusItems = [
   {
     title: "YouTube content factory",
-    detail: "Topic → script/song → images → animation prompts → packaged video for small channels.",
+    detail: "Still iterating the topic → video loop for small channels that need volume.",
   },
   {
-    title: "RAG knowledge systems",
-    detail: "Ingest, embed, retrieve with citations, ship grounded answers into bots and tools.",
+    title: "Client Shopify + backend",
+    detail: "Day job at Disruptive Brain / Flaxen — apps, APIs, and hard cases like Vulgrco reorder.",
   },
   {
-    title: "WhatsApp bots + CodeBuddy",
-    detail: "Cloud API automations and a personal WhatsApp AI buddy with ACL + commands.",
+    title: "WhatsApp / EasyCloudAPI",
+    detail: "Multi-tenant inbox and automations; CodeBuddy for my own ops chat.",
   },
   {
-    title: "Voice AI agents + dashboard",
-    detail: "Booking agents, transcriptions, metering, GHL/email: full product surface.",
+    title: "Voice agents + dashboard",
+    detail: "Product surface around calls: booking, transcripts, metering, GHL hooks.",
   },
 ] as const;
 

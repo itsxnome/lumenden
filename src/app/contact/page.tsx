@@ -15,16 +15,16 @@ export default function ContactPage() {
         <div className="sectionRail">
           <p className="kicker">
             <span className="kickerDot" aria-hidden />
-            01 / Contact
+            Contact
           </p>
           <p className="kicker">{site.email}</p>
         </div>
         <h1 className="h1">
-          Let&apos;s <span className="accent">build.</span>
+          Say <span className="accent">hello.</span>
         </h1>
         <p className="lede" style={{ marginTop: 16 }}>
-          AI products, automations, voice agents, WhatsApp systems, Shopify apps. Tell me
-          what you need shipped.
+          Shopify apps, WhatsApp systems, backend APIs, automations — tell me what
+          you&apos;re stuck on and I&apos;ll reply.
         </p>
 
         <div className={`${styles.split2} section`}>

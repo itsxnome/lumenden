@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import styles from "./ui.module.css";
 
 const sections = [
-  { id: "intro", label: "Lumenden" },
-  { id: "lineup", label: "Lineup" },
-  { id: "library", label: "Library" },
+  { id: "intro", label: "Intro" },
+  { id: "lineup", label: "Work" },
+  { id: "library", label: "More" },
   { id: "hire", label: "Hire" },
 ] as const;
 
