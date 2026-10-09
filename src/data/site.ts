@@ -5,7 +5,7 @@ export const site = {
   email: "saadfl2000@gmail.com",
   location: "Open to remote",
   tagline:
-    "I build end-to-end AI pipelines: YouTube factories, RAG systems, WhatsApp bots, voice agents, and the glue that keeps them shipping.",
+    "Portfolio of Saad Fazal — end-to-end AI pipelines: YouTube factories, RAG systems, WhatsApp bots, voice agents, and the glue that keeps them shipping.",
   links: {
     email: "mailto:saadfl2000@gmail.com",
     linkedin: "https://www.linkedin.com/in/mrsaadfazal1",

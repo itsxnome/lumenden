@@ -64,21 +64,21 @@ export default function HomePage() {
           <div className={styles.heroTop}>
             <p className="kicker">
               <span className="kickerDot" aria-hidden />
-              01 / Lumenden
+              01 / Portfolio
             </p>
             <p className="kicker">
-              {site.name.split(" ")[0]} · 6+ yrs · Remote · AI systems
+              {site.name} · 6+ yrs · Remote
             </p>
           </div>
 
           <div className={`${styles.heroCopy} rise`}>
+            <p className={styles.heroEyebrow}>{site.role}</p>
             <h1 id="home-title" className={styles.heroTitle}>
               Systems that <em>ship.</em>
             </h1>
             <p className={styles.heroRole}>
-              YouTube factories, RAG systems, WhatsApp bots, voice agents, and the
-              automation glue that keeps them shipping. Built for teams that need
-              proof, not slides.
+              Selected work by {site.name} — YouTube factories, RAG systems, WhatsApp
+              bots, voice agents, and the automation glue that keeps them shipping.
             </p>
             <div className={styles.heroActions}>
               <Button href="/work" variant="primary">

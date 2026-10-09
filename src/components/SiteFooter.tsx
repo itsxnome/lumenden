@@ -12,8 +12,8 @@ export function SiteFooter() {
               Lumen<span className={styles.brandMark}>den</span>
             </div>
             <p className="muted" style={{ marginTop: 12, maxWidth: "34ch" }}>
-              Selected systems by {site.name}. AI products, automation, and backend work
-              built to ship.
+              Portfolio of {site.name}. Selected AI products, automation, and backend
+              work built to ship.
             </p>
           </div>
           <div className={styles.footerLinks}>

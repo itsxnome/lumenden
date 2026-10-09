@@ -816,6 +816,15 @@
   box-sizing: border-box;
 }
 
+.heroEyebrow {
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 .heroTitle {
   font-family: var(--font-body);
   font-size: clamp(2.35rem, 8vw, 3.75rem);
