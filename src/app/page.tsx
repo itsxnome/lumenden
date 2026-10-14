@@ -11,18 +11,18 @@ import { ProjectColumn } from "@/components/ProjectColumn";
 import styles from "@/components/ui.module.css";
 import { projects, site } from "@/data/site";
 
-/** Case-style covers that match the warm paper system. */
+/** Notion marks — same set as the project columns, shown full (no crop). */
 const proofFrames = [
   {
-    src: "/work/covers/easycloud.jpg",
+    src: "/work/icons/ec.png",
     cap: "EasyCloudAPI — multi-tenant WhatsApp inbox",
   },
   {
-    src: "/work/covers/shopify.jpg",
+    src: "/work/icons/sh.png",
     cap: "Shopify reorder — cart reconstruct outside the defaults",
   },
   {
-    src: "/work/covers/yt.jpg",
+    src: "/work/icons/yt.png",
     cap: "YouTube factory — topic in, episode assets out",
   },
 ] as const;
@@ -82,9 +82,6 @@ export default function HomePage() {
               />
             </div>
 
-            <span className={styles.heroYear} aria-hidden>
-              &apos;26
-            </span>
             <p className={styles.heroName}>{site.name}</p>
 
             <a className={styles.heroScroll} href="#systems">

@@ -19,7 +19,7 @@ export function IdBadge() {
               alt=""
               fill
               sizes="220px"
-              style={{ objectFit: "cover", objectPosition: "center top" }}
+              style={{ objectFit: "contain", objectPosition: "center bottom" }}
             />
           </div>
 

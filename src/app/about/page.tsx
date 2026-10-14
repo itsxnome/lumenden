@@ -50,7 +50,7 @@ export default function AboutPage() {
                 alt={site.name}
                 fill
                 sizes="160px"
-                style={{ objectFit: "cover", objectPosition: "center top" }}
+                style={{ objectFit: "contain", objectPosition: "center bottom" }}
               />
             </div>
             <div className="prose">

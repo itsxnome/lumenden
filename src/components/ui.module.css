@@ -141,7 +141,9 @@
 
 .mobileNav a:hover {
   background: var(--paper-2);
-}@media (max-width: 1000px) {
+}
+
+@media (max-width: 960px) {
   .navDesktop,
   .hireCta {
     display: none;
@@ -263,24 +265,35 @@
 }
 
 .cardShot img {
-  object-fit: cover;
-  object-position: top left;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* Square product marks: smaller, centred, not stretched to 16:10. */
 .cardShotIcon {
-  width: min(160px, 52%);
-  aspect-ratio: 1;
+  width: min(152px, 52%);
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: var(--r-lg);
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
 }
 
 .cardShotIcon img {
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain !important;
+  object-position: center !important;
+  inset: 10% !important;
+  width: auto !important;
+  height: auto !important;
 }
 
 .card:hover .cardShot {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-4px) scale(1.01);
+}
+
+.card:hover .cardShotIcon {
+  transform: translateY(-3px) scale(1.02);
 }
 
 .cardBody {
@@ -411,7 +424,9 @@
 
 .cardCompact .cardNum {
   font-size: clamp(3rem, 7vw, 4.5rem);
-}@media (max-width: 860px) {
+}
+
+@media (max-width: 860px) {
   .card {
     grid-template-columns: 1fr;
   }
@@ -461,8 +476,8 @@
 }
 
 .indexMark img {
-  object-fit: cover;
-  object-position: top left;
+  object-fit: contain;
+  object-position: center;
 }
 
 .indexNum {
@@ -509,7 +524,9 @@
 
 .indexRow:hover .indexArrow {
   transform: translateX(4px);
-}@media (max-width: 860px) {
+}
+
+@media (max-width: 860px) {
   .indexRow {
     grid-template-columns: 48px minmax(0, 1fr) auto;
     gap: var(--s-2) var(--s-4);
@@ -763,8 +780,9 @@
 /* Proof screenshots. */
 .proofStrip {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s-6);
+  justify-items: start;
 }
 
 .proofItem {
@@ -776,11 +794,12 @@
 
 .proofThumb {
   position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
+  aspect-ratio: 1;
+  max-width: 280px;
+  overflow: visible;
   border-radius: var(--r-md);
   border: 1px solid var(--line);
-  background: var(--card);
+  background: var(--paper-2);
   box-shadow: var(--shadow-sm);
   transition: transform var(--t-mid) var(--ease-pop), box-shadow var(--t-mid) var(--ease);
 }
@@ -791,8 +810,9 @@
 }
 
 .proofThumb img {
-  object-fit: cover;
-  object-position: top left;
+  object-fit: contain;
+  object-position: center;
+  padding: 8%;
 }
 
 .proofCap {
@@ -866,7 +886,9 @@
 .hirePanel .btnPrimary {
   background: var(--paper);
   color: var(--ink);
-}@media (max-width: 900px) {
+}
+
+@media (max-width: 900px) {
   .hirePanel {
     grid-template-columns: 1fr;
     padding: var(--s-8) var(--s-6);
@@ -906,7 +928,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: var(--s-6);
-}@media (max-width: 900px) {
+}
+
+@media (max-width: 900px) {
   .split2 {
     grid-template-columns: 1fr;
   }
@@ -1107,7 +1131,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}@media (max-width: 900px) {
+}
+
+@media (max-width: 900px) {
   .detailGrid,
   .overviewBlock,
   .detailHeroIcon {
@@ -1241,7 +1267,9 @@
   font-family: var(--font-code);
   font-size: var(--fs-xs);
   letter-spacing: 0.04em;
-}@media (max-width: 800px) {
+}
+
+@media (max-width: 800px) {
   .footerGrid {
     grid-template-columns: 1fr;
     gap: var(--s-6);
@@ -1319,8 +1347,10 @@
   }
 }
 
-/* Portrait: anchored to the bottom of the stage, nudged left of centre so it
-   lands in the PORT|FOLIO gap, and faded out at the base by a mask. */
+/* Portrait: width-driven like the Ines/Skillry reference so it scales the
+   same way on tablet/phone. transform (not the translate property) so
+   prefers-reduced-motion cannot wipe horizontal centering. -44% centres the
+   head in the PORT|FOLIO gap (raised hand sits left of the box centre). */
 .heroPortrait {
   position: absolute;
   z-index: 3;
@@ -1328,25 +1358,26 @@
   bottom: 0;
   width: clamp(220px, 30vw, 380px);
   aspect-ratio: 2 / 3;
-  translate: -44% 0;
+  transform: translateX(-44%);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(#000 88%, transparent);
   mask-image: linear-gradient(#000 88%, transparent);
   animation: portraitIn 640ms var(--ease-out) 160ms both;
-  display: block;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: transparent;
+}
+
+.heroPortrait img {
+  object-fit: contain !important;
+  object-position: 50% 100% !important;
 }
 
 @keyframes portraitIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-44%) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: none;
+    transform: translateX(-44%);
   }
 }
 
@@ -1363,32 +1394,18 @@
   color: var(--sand);
 }
 
-.heroYear {
-  position: absolute;
-  z-index: 3;
-  right: clamp(0px, 6%, 80px);
-  top: clamp(10px, 3vw, 36px);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(20px, 3.1vw, 40px);
-  line-height: 1.5;
-  letter-spacing: -0.04em;
-  color: var(--sand);
-  transform: rotate(-8deg);
-}
-
 .heroScroll {
   position: absolute;
   z-index: 4;
   right: clamp(0px, 4%, 40px);
-  bottom: 16px;
+  bottom: 20px;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 44px;
+  min-height: 32px;
   padding: 0 0.6rem;
   color: var(--ink-2);
-  font-size: var(--fs-sm);
+  font-size: 13px;
   font-weight: 700;
   transition: color var(--t-fast) var(--ease);
 }
@@ -1405,6 +1422,56 @@
 
 .heroScroll:hover i {
   transform: translateY(3px);
+}
+
+/* Match Skillry Ines breakpoints: 760 tablet hero, 640 phone hero. */
+@media (max-width: 760px) {
+  .heroStage {
+    height: 460px;
+  }
+
+  .heroPortrait {
+    width: 255px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroLetter {
+    --ty: var(--ym, var(--y, 0px));
+  }
+
+  .lwGap {
+    width: clamp(8px, 4vw, 44px);
+  }
+
+  .heroPortrait {
+    transform: translateX(-50%);
+    animation-name: portraitInMobile;
+  }
+
+  .heroName {
+    top: auto;
+    bottom: 48px;
+    left: 0;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+  }
+
+  .heroScroll {
+    display: none;
+  }
+}
+
+@keyframes portraitInMobile {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
 }
 
 /* ═══ Intro: badge + greeting ══════════════════════════════ */
@@ -1462,8 +1529,13 @@
   aspect-ratio: 4 / 4.4;
   border-radius: var(--r-md);
   overflow: hidden;
-  background: linear-gradient(170deg, var(--sand-tint), #ede4d1);
+  background: var(--paper);
   border: 1px solid var(--outline);
+}
+
+.badgePhoto img {
+  object-fit: contain !important;
+  object-position: center bottom !important;
 }
 
 .badgeMeta {
@@ -1802,22 +1874,28 @@
 
 .colDev {
   position: absolute;
-  inset: 7% 8% 36%;
+  /* Keep marks clear of the rounded card edge so nothing clips */
+  inset: 14% 14% 40%;
   display: grid;
   place-items: center;
   border-radius: var(--r-md);
-  overflow: hidden;
-  box-shadow: var(--shadow);
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
   transition: transform 600ms var(--ease-out);
 }
 
 .colDev img {
-  object-fit: cover;
-  object-position: top left;
+  object-fit: contain !important;
+  object-position: center !important;
+  /* Extra inner margin: fill images ignore padding reliably */
+  inset: 8% !important;
+  width: auto !important;
+  height: auto !important;
 }
 
 .colLink:hover .col .colDev {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .colGo {
@@ -1872,11 +1950,31 @@
   color: var(--text-soft);
   font-size: var(--fs-sm);
   line-height: 1.5;
-}@media (max-width: 1000px) {
+}
+
+/* Align with Skillry Ines: columns wrap at 960, intro/cols3 stack at 860. */
+@media (max-width: 960px) {
   .columns {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 32px;
   }
 
+  .colItem {
+    flex: 0 0 calc((100% - 2 * clamp(10px, 1.2vw, 18px)) / 3);
+  }
+
+  .col {
+    aspect-ratio: 1 / 1.45;
+  }
+
+  .colDev {
+    inset: 7% 10% 30%;
+  }
+}
+
+@media (max-width: 860px) {
   .cols3 {
     grid-template-columns: 1fr;
   }
@@ -1893,12 +1991,13 @@
   .introGrid {
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: var(--s-8);
+    gap: 48px;
   }
 }
-@media (max-width: 620px) {
-  .columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+@media (max-width: 640px) {
+  .colItem {
+    flex-basis: calc((100% - clamp(10px, 1.2vw, 18px)) / 2);
   }
 }
 

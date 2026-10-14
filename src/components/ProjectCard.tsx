@@ -27,10 +27,10 @@ export function ProjectCard({
   compact?: boolean;
 }) {
   const c = accentFor(index);
-  // Fall back to the first gallery frame so a project with artwork only in its
-  // gallery still gets a filled colour panel rather than an empty block.
-  const shot = project.image ?? project.poster ?? project.icon ?? project.gallery?.[0];
-  const isIcon = !project.image && !project.poster && Boolean(project.icon);
+  // Prefer the square Notion mark so /work stays consistent; covers are for
+  // case pages / galleries where full UI reads better at larger size.
+  const shot = project.icon ?? project.image ?? project.poster ?? project.gallery?.[0];
+  const isIcon = Boolean(project.icon) || (!project.image && !project.poster && Boolean(shot));
 
   const style = {
     "--accent": `var(--${c})`,
