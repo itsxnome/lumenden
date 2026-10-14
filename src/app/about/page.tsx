@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/Button";
+import { DisplayWord } from "@/components/DisplayWord";
 import styles from "@/components/ui.module.css";
 import { education, site, stack } from "@/data/site";
 
@@ -12,22 +14,45 @@ export default function AboutPage() {
   return (
     <div className="page">
       <div className="shell sectionPad">
-        <div className="sectionRail">
+        <div className="railRow">
           <p className="kicker">
-            <span className="kickerDot" aria-hidden />
             About
           </p>
           <p className="kicker">{site.location}</p>
         </div>
-        <h1 className="h1">
-          Saad <span className="accent">Fazal.</span>
-        </h1>
-        <p className="lede" style={{ marginTop: 16 }}>
-          {site.role}. Based remote. Six-plus years shipping for clients and my own products.
-        </p>
+        <div className="displayHead">
+          <h1 className="display">
+            <DisplayWord>ABOUT</DisplayWord>
+          </h1>
+          <p className="lede">
+            Six years of backend, mostly. Started as a web intern, moved into
+            integrations, and now split time between client Shopify work and my own
+            products.
+          </p>
+        </div>
 
         <div className={`${styles.split2} section`}>
           <div>
+            <div
+              style={{
+                position: "relative",
+                width: 160,
+                aspectRatio: "1 / 1",
+                borderRadius: "var(--r-lg)",
+                overflow: "hidden",
+                marginBottom: "var(--s-6)",
+                border: "1px solid var(--outline)",
+                boxShadow: "var(--shadow)",
+              }}
+            >
+              <Image
+                src={site.avatar}
+                alt={site.name}
+                fill
+                sizes="160px"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
+              />
+            </div>
             <div className="prose">
               <p>
                 I started as a web intern at Flaxen Media, moved into backend and

@@ -6,6 +6,9 @@ export const site = {
   location: "Open to remote",
   tagline:
     "Saad Fazal — backend, Shopify, WhatsApp, and automation work that stays up after launch. Portfolio at Lumenden.",
+  /** Consistent Notion-style character used in hero + ID badge */
+  portrait: "/me/portrait.jpg",
+  avatar: "/me/avatar.jpg",
   links: {
     email: "mailto:saadfl2000@gmail.com",
     linkedin: "https://www.linkedin.com/in/mrsaadfazal1",
@@ -28,7 +31,8 @@ export type Project = {
   stack: string[];
   category: "Product" | "AI" | "Automation" | "Shopify" | "Motion" | "Content";
   status: "Live" | "Shipping" | "Case study";
-  size: "xl" | "lg" | "md" | "sm";
+  /** Square product mark (public/work/icons) — used where no screenshot exists */
+  icon?: string;
   image?: string;
   video?: string;
   poster?: string;
@@ -57,19 +61,15 @@ export const projects: Project[] = [
       "Built for channel operators who need volume: nursery / cartoon niches and other small-creation pipelines where “topic in → assets out” beats hand-building every episode.",
       "Wizard UI with progress, back/forward without losing state, regenerate song variants, and an All Projects library for saved runs.",
     ],
-    impact: "Script · images · song · animate prompts · package",
+    impact: "One topic in, a whole episode's assets out.",
     tags: ["YouTube", "Mureka", "Replicate", "OpenAI"],
     stack: ["React", "Node", "MongoDB", "Object storage", "Mureka", "Replicate", "OpenAI"],
     category: "Content",
     status: "Live",
-    size: "xl",
-    image: "/work/generated/yt-pipeline.jpg",
-    gallery: [
-      "/work/generated/yt-pipeline.jpg",
-      "/work/generated/yt-ui-1.png",
-      "/work/generated/yt-ui-2.png",
-    ],
     featured: true,
+    icon: "/work/icons/yt.jpg",
+    image: "/work/covers/yt.jpg",
+    gallery: ["/work/covers/yt.jpg"],
   },
   {
     slug: "codebuddy",
@@ -90,15 +90,15 @@ export const projects: Project[] = [
       "Useful as a private AI channel on the app people already live in, not another web UI nobody opens.",
       "Graceful Puppeteer shutdown, phone number normalization, and config-driven behavior.",
     ],
-    impact: "WhatsApp · AI chat · ACL · commands",
+    impact: "Lives in the app I already have open all day.",
     tags: ["WhatsApp", "Bots", "AI", "Node"],
     stack: ["Node.js", "whatsapp-web.js", "OpenAI SDK", "Requesty"],
     category: "Automation",
     status: "Live",
-    size: "lg",
-    image: "/work/generated/codebuddy.jpg",
-    gallery: ["/work/generated/codebuddy.jpg"],
     featured: true,
+    icon: "/work/icons/cb.jpg",
+    image: "/work/covers/codebuddy.jpg",
+    gallery: ["/work/covers/codebuddy.jpg"],
   },
   {
     slug: "lumenden",
@@ -117,15 +117,14 @@ export const projects: Project[] = [
     body: [
       "Lumenden is the brand name of this portfolio, originally the prompt library project, now the home for selected systems.",
     ],
-    impact: "100k+ prompts · skills · discovery UX",
+    impact: "100k+ prompts that stayed findable.",
     tags: ["Product", "Prompts", "Skills", "RAG-ready"],
     stack: ["Product design", "Content systems", "AI workflows"],
     category: "Product",
     status: "Live",
-    size: "md",
-    image: "/work/lumenden/avatar.jpg",
-    gallery: ["/work/lumenden/avatar.jpg", "/work/lumenden/ui-1.jpg"],
-    featured: true,
+    icon: "/work/icons/lm.jpg",
+    image: "/work/covers/lumenden.jpg",
+    gallery: ["/work/covers/lumenden.jpg"],
   },
   {
     slug: "rag-systems",
@@ -145,15 +144,15 @@ export const projects: Project[] = [
     body: [
       "Used where hallucination is expensive: customer support, ops knowledge, and product help that has to quote the right SKU or policy line.",
     ],
-    impact: "Ingest · retrieve · cite · answer",
+    impact: "Answers that cite the doc they came from.",
     tags: ["RAG", "Embeddings", "Vector search", "Agents"],
     stack: ["Python / Node", "Embeddings", "Vector DB", "LLM APIs"],
     category: "AI",
     status: "Shipping",
-    size: "md",
-    image: "/work/generated/rag-system.jpg",
-    gallery: ["/work/generated/rag-system.jpg"],
     featured: true,
+    icon: "/work/icons/rg.jpg",
+    image: "/work/covers/rag.jpg",
+    gallery: ["/work/covers/rag.jpg"],
   },
   {
     slug: "whatsapp-bots",
@@ -173,14 +172,14 @@ export const projects: Project[] = [
     body: [
       "Designed as ops tooling, not a toy chatbot. Inbox, windows, templates, and automations that hold at 2am.",
     ],
-    impact: "Bots · inbox · broadcasts · CRM sync",
+    impact: "Order updates that beat the support ticket.",
     tags: ["WhatsApp", "Bots", "Automation", "Cloud API"],
     stack: ["Meta Cloud API", "Workers", "n8n", "Node"],
     category: "Automation",
     status: "Live",
-    size: "sm",
-    image: "/work/generated/whatsapp-bots.jpg",
-    gallery: ["/work/generated/whatsapp-bots.jpg", "/work/easycloud/feature.jpg"],
+    icon: "/work/icons/ec.jpg",
+    image: "/work/covers/easycloud.jpg",
+    gallery: ["/work/covers/easycloud.jpg", "/work/easycloud/inbox.png"],
   },
   {
     slug: "voice-ai-saas",
@@ -200,14 +199,14 @@ export const projects: Project[] = [
     body: [
       "Not a demo agent: ops-ready SaaS for businesses that need the dashboard and the workflows, not just a cool phone call.",
     ],
-    impact: "Voice agents · GHL · dashboard · metering",
+    impact: "The billing and dashboards around the phone call.",
     tags: ["Voice AI", "GHL", "SaaS", "Bots"],
     stack: ["Dashboard UI", "APIs", "GHL", "n8n", "Twilio-class telephony"],
     category: "AI",
     status: "Shipping",
-    size: "sm",
-    image: "/work/generated/voice-dashboard.jpg",
-    gallery: ["/work/generated/voice-dashboard.jpg"],
+    icon: "/work/icons/vx.jpg",
+    image: "/work/covers/voice.jpg",
+    gallery: ["/work/covers/voice.jpg"],
   },
   {
     slug: "easycloudapi",
@@ -227,14 +226,19 @@ export const projects: Project[] = [
     body: [
       "Credential security with AES-GCM key ring; workers kept out of the request path so Meta gets 200s in milliseconds.",
     ],
-    impact: "Multi-tenant · inbox · broadcasts · AI assist",
+    impact: "Meta gets its 200 in milliseconds; the work happens behind a queue.",
     tags: ["WhatsApp", "Postgres", "Workers", "APIs"],
     stack: ["Postgres", "Redis/BullMQ", "Auth", "Meta Cloud API"],
     category: "Product",
     status: "Case study",
-    size: "sm",
-    image: "/work/easycloud/feature.jpg",
-    gallery: ["/work/easycloud/feature.jpg", "/work/easycloud/inbox.png"],
+    icon: "/work/icons/ec.jpg",
+    image: "/work/covers/easycloud.jpg",
+    gallery: [
+      "/work/covers/easycloud.jpg",
+      "/work/easycloud/inbox.png",
+      "/work/easycloud/integrations.png",
+    ],
+    featured: true,
   },
   {
     slug: "motion-graphics-skill",
@@ -254,12 +258,12 @@ export const projects: Project[] = [
     body: [
       "Includes style sheets and real client reel outputs as proof, not just a prompt paste.",
     ],
-    impact: "Style systems · move catalogues · production shorts",
+    impact: "Script to finished reel, styles locked.",
     tags: ["Claude Skill", "HeyGen", "Higgsfield", "Motion"],
     stack: ["Claude skills", "HeyGen", "Higgsfield", "Hyperframes", "FFmpeg"],
     category: "Motion",
     status: "Shipping",
-    size: "sm",
+    icon: "/work/icons/mo.jpg",
     video: "/work/motion/welcome-discount.mp4",
     poster: "/work/motion/welcome-poster.jpg",
     gallery: ["/work/motion/welcome-poster.jpg", "/work/motion/ad-library-poster.jpg"],
@@ -282,13 +286,14 @@ export const projects: Project[] = [
     body: [
       "The unsexy layer that makes voice, WhatsApp, and dashboards actually stay alive in production.",
     ],
-    impact: "Ops automation · webhook pipelines",
+    impact: "The glue layer nobody demos and everybody needs.",
     tags: ["n8n", "Make", "Zapier", "Integrations"],
     stack: ["n8n", "Make", "Zapier", "REST APIs"],
     category: "Automation",
     status: "Live",
-    size: "sm",
-    image: "/work/generated/automation-nodes.jpg",
+    icon: "/work/icons/n8.jpg",
+    image: "/work/shopify/n8n-jobs.png",
+    gallery: ["/work/shopify/n8n-jobs.png"],
   },
   {
     slug: "shopify-apps",
@@ -309,13 +314,19 @@ export const projects: Project[] = [
       "Vulgrco reorder: customers can repeat complex custom products without rebuilding options and attributes by hand — the part Shopify leaves you to invent.",
       "Day-job track that funds and informs the AI/automation systems work.",
     ],
-    impact: "Vulgrco reorder · Shopify apps · Node APIs",
+    impact: "Rebuilt the reorder path Shopify doesn't give you.",
     tags: ["Shopify", "Vulgrco", "Reorder", "Node.js"],
     stack: ["Shopify", "Node.js", "Express", "React"],
     category: "Shopify",
     status: "Case study",
-    size: "sm",
-    image: "/work/shopify/automation.png",
+    icon: "/work/icons/sh.jpg",
+    image: "/work/covers/shopify.jpg",
+    gallery: [
+      "/work/covers/shopify.jpg",
+      "/work/ads/vulgrco-hero.jpg",
+      "/work/ads/benefit-split.jpg",
+    ],
+    featured: true,
   },
 ];
 
