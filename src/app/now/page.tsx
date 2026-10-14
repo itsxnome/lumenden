@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectIndex } from "@/components/ProjectIndex";
+import { DisplayWord } from "@/components/DisplayWord";
 import styles from "@/components/ui.module.css";
 import { focusItems, getProject, site } from "@/data/site";
 
@@ -12,31 +13,31 @@ export const metadata: Metadata = {
 export default function NowPage() {
   const shipping = ["yt-content-factory", "codebuddy", "rag-systems", "whatsapp-bots"]
     .map((slug) => getProject(slug))
-    .filter(Boolean);
+    .filter((p) => p !== undefined);
 
   return (
     <div className="page">
       <div className="shell sectionPad">
-        <div className="sectionRail">
+        <div className="railRow">
           <p className="kicker">
-            <span className="kickerDot" aria-hidden />
             Now
           </p>
           <p className="kicker">This week</p>
         </div>
-        <h1 className="h1">
-          What I&apos;m on <span className="accent">now.</span>
-        </h1>
-        <p className="lede" style={{ marginTop: 16 }}>
-          Active builds and client work — not an archive of everything I&apos;ve ever
-          touched.
-        </p>
+        <div className="displayHead">
+          <h1 className="display">
+            <DisplayWord>NOW</DisplayWord>
+          </h1>
+          <p className="lede">
+            What&apos;s actually open on my desk this month — active builds and client
+            work, not an archive.
+          </p>
+        </div>
 
         <div className={`${styles.split2} section`}>
           <div className={styles.panelInk}>
-            <p className="kicker" style={{ color: "var(--text-on-ink-soft)" }}>
-              <span className="kickerDot" aria-hidden />
-              Focus
+            <p className="kicker">
+                Focus
             </p>
             <h2 className="h3" style={{ marginTop: 10 }}>
               On my plate
@@ -71,7 +72,7 @@ export default function NowPage() {
         </div>
 
         <section className="section" aria-labelledby="now-projects">
-          <div className="sectionHead">
+          <div className="railRow">
             <h2 id="now-projects" className="h2">
               Related write-ups
             </h2>
@@ -79,11 +80,7 @@ export default function NowPage() {
               All projects
             </Button>
           </div>
-          <div className="bento">
-            {shipping.map(
-              (project) => project && <ProjectCard key={project.slug} project={project} />,
-            )}
-          </div>
+          <ProjectIndex projects={shipping} />
         </section>
       </div>
     </div>

@@ -19,8 +19,15 @@ export function SiteHeader() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    // The panel locks body scroll; Escape has to be a way back out.
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
@@ -28,8 +35,11 @@ export function SiteHeader() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.brand} aria-label={`${site.brand} home`}>
-          <Stamp size="sm" />
-          Lumen<span className={styles.brandMark}>den</span>
+          <Stamp />
+          {/* One flex item, or .brand's gap splits the wordmark: "Lumen den". */}
+          <span>
+            Lumen<span className={styles.brandMark}>den</span>
+          </span>
         </Link>
 
         <div className={styles.headerRight}>

@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
-import { ScrollRuler } from "@/components/ScrollRuler";
+import { Figtree, Geist_Mono, Unbounded } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const sans = Archivo({
+const sans = Figtree({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const mono = Geist_Mono({
   weight: ["400", "500"],
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
 });
 
-const display = Instrument_Serif({
-  weight: "400",
+/** Oversized page words — "WORK", "ABOUT", the hero wordmark. */
+const display = Unbounded({
+  /* 500 is the hero wordmark weight in the reference; 600/700 carry the
+     headings and the outlined word. */
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-serif",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -59,7 +61,6 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
-        <ScrollRuler />
       </body>
     </html>
   );

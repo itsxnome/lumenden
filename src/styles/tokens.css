@@ -1,72 +1,115 @@
 :root {
-  /* Surfaces — sampled from getartcraft.com/apps */
-  --bg: #121316;
-  --bg-elevated: #1a1b1f;
-  --bg-ink: #121316;
-  --bg-ink-soft: #1a1b1f;
-  --bg-wash: #1a1b1f;
-  --bg-strong: oklab(0.186962 0.000125498 -0.00628337 / 0.95);
-  --bg-grid: #121316;
+  /* ── Surfaces ──────────────────────────────────────────────
+     Warm paper, not white. The slight warmth is what stops a
+     light theme reading as a blank document. */
+  --paper: #f5f3ee;
+  --paper-2: #efece5;
+  --card: #ffffff;
+  --ink: #151515;
+  --ink-2: #3a3833;
 
-  /* Text — Artcraft off-white */
-  --text: #f2f1ee;
-  --text-soft: rgba(242, 241, 238, 0.62);
-  --text-faint: rgba(242, 241, 238, 0.38);
-  --text-on-ink: #f2f1ee;
-  --text-on-ink-soft: rgba(242, 241, 238, 0.62);
-  --text-invert: #121316;
+  /* ── Text ──────────────────────────────────────────────────
+     Alphas replaced with solid values: on a light ground the
+     muted tone needs to be picked for contrast, not faded. */
+  --text: #151515;
+  --text-soft: #56534c;
+  --text-muted: #69655d;
+  --text-invert: #f5f3ee;
+  /* Referenced by the Now page's panel; was undefined and silently inheriting. */
+  --text-on-ink-soft: rgba(245, 243, 238, 0.76);
 
-  /* Accent — ink, not glow */
-  --accent: #7a9eff;
-  --accent-bright: #9bb6ff;
-  --accent-wash: rgba(122, 158, 255, 0.12);
-  --accent-teal: #2dd4bf;
-  --ink-warm: #e8e2d6;
+  /* ── Lines ─────────────────────────────────────────────── */
+  --line: rgba(21, 21, 21, 0.1);
+  --line-2: rgba(21, 21, 21, 0.18);
+  --outline: #cdc5b4;
 
-  /* Borders — Artcraft border-line ≈ 0.15 */
-  --line: rgba(242, 241, 238, 0.15);
-  --line-strong: rgba(242, 241, 238, 0.22);
-  --line-on-ink: rgba(242, 241, 238, 0.15);
-  --border: #f2f1ee;
+  /* ── Brand accent (the gold that labels and names sit in) ──
+     Darkened from the reference's #866b3b: that clears 4.5:1 on --paper
+     but lands at 4.26 on --paper-2 and --sand-tint, which is where the
+     badges and the pull quote actually sit. This holds >=5:1 on all four
+     grounds it is used against. */
+  --sand: #796035;
+  --sand-tint: #f2ecdf;
 
-  --fs-xs: 0.6875rem;
+  /* ── Project accents ───────────────────────────────────────
+     Five hues, each with an ink colour for text placed ON it
+     and a soft tint for quiet fills. Projects cycle through
+     these so no two neighbours share a colour. */
+  --c1: #3a5bd9;
+  --c1-ink: #ffffff;
+  --c1-soft: #e6eafb;
+
+  --c2: #dccfb6;
+  --c2-ink: #23201a;
+  --c2-soft: #f4efe5;
+
+  --c3: #a7c98d;
+  --c3-ink: #18240f;
+  --c3-soft: #ecf3e5;
+
+  --c4: #e6604f;
+  --c4-ink: #ffffff;
+  --c4-soft: #fbe8e4;
+
+  --c5: #8292e3;
+  --c5-ink: #121633;
+  --c5-soft: #eceefb;
+
+  --ok: #2f8f5b;
+  --err: #c23a2b;
+
+  /* ── Type scale ───────────────────────────────────────────
+     12px floor for anything a reader has to read; --fs-deco is
+     for aria-hidden ornament only. */
+  --fs-deco: 0.625rem;
+  --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
-  --fs-md: 1rem;
-  --fs-lg: 1.125rem;
-  --fs-xl: 1.5rem;
-  --fs-2xl: 1.875rem;
-  --fs-3xl: clamp(2.25rem, 4vw, 3.75rem);
-  --fs-4xl: clamp(2.75rem, 6vw, 4.5rem);
-  --fs-5xl: clamp(3.25rem, 9vw, 5.25rem);
+  --fs-md: 1.0625rem;
+  --fs-lg: clamp(1.15rem, 1rem + 0.55vw, 1.4rem);
+  --fs-h3: clamp(1.3rem, 1.1rem + 0.7vw, 1.6rem);
+  --fs-h2: clamp(1.9rem, 1.1rem + 2.2vw, 3rem);
+  --fs-h1: clamp(2.4rem, 1.4rem + 3.4vw, 4rem);
+  /* Oversized page word ("WORK", "ABOUT") */
+  --fs-display: clamp(3rem, 1rem + 9vw, 8rem);
 
-  --s-1: 6px;
+  /* ── Space ────────────────────────────────────────────── */
+  --s-1: 4px;
   --s-2: 8px;
-  --s-3: 10px;
-  --s-4: 12px;
-  --s-5: 16px;
-  --s-6: 20px;
-  --s-7: 24px;
-  --s-8: 32px;
-  --s-9: 48px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 56px;
   --s-10: 72px;
   --s-11: 96px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --section: clamp(72px, 8vw, 128px);
 
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-pill: 999px;
+  /* ── Radii — generous and friendly, not sharp ───────────── */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-pill: 999px;
 
-  --shadow-soft: none;
-  --shadow-hover: none;
-  --shadow-ink: none;
+  /* ── Shadows — soft, warm-tinted, never black ───────────── */
+  --shadow-sm: 0 1px 2px rgba(40, 32, 18, 0.06), 0 2px 6px rgba(40, 32, 18, 0.05);
+  --shadow: 0 1px 2px rgba(40, 32, 18, 0.06), 0 14px 34px -10px rgba(40, 32, 18, 0.22);
+  --shadow-lg: 0 2px 4px rgba(40, 32, 18, 0.06), 0 30px 60px -18px rgba(40, 32, 18, 0.32);
 
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 140ms;
-  --dur: 240ms;
-  --dur-slow: 420ms;
+  /* ── Motion ───────────────────────────────────────────────
+     --ease-pop overshoots slightly; it is what makes a hover
+     feel like a press rather than a fade. */
+  --ease: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Decelerating, no overshoot — for travel (cards, letters) where a bounce
+     at the end would read as wobble rather than snap. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 160ms;
+  --t-mid: 280ms;
+  --t-slow: 650ms;
 
-  --max: 1280px;
-  --frame-gutter: clamp(1rem, 3vw, 2.5rem);
-  --header-h: 56px;
+  --max: 1200px;
+  --header-h: 72px;
 }

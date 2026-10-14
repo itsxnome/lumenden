@@ -33,6 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# claude code — vendored third-party skills (3.9MB of CSV data, re-installable)
+# and local config, which can hold API keys. Un-ignore specific files with
+# `!.claude/<file>` if you ever want one of them versioned.
+.claude/
+
 # vercel
 .vercel
 

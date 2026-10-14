@@ -31,6 +31,10 @@ export function ContactForm() {
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) {
       setStatus("error");
+      // Send focus to the first problem, in field order — an error you
+      // can't reach is an error a keyboard user never finds.
+      const first = (["name", "email", "message"] as const).find((k) => nextErrors[k]);
+      if (first) document.getElementById(first)?.focus();
       return;
     }
 

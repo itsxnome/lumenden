@@ -13,8 +13,11 @@ export function SiteFooter() {
           <div>
             <div className={styles.footerBrand}>
               <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                <Stamp size="md" />
-                Lumen<span className={styles.brandMark}>den</span>
+                <Stamp />
+                {/* One flex item — see SiteHeader. */}
+                <span>
+                  Lumen<span className={styles.brandMark}>den</span>
+                </span>
               </span>
             </div>
             <p className="muted" style={{ marginTop: 12, maxWidth: "34ch" }}>
@@ -47,12 +50,6 @@ export function SiteFooter() {
             © {year} {site.brand}
           </span>
           <span>{site.location}</span>
-        </div>
-        <div className={styles.colophon}>
-          <span>Colophon</span>
-          <span>Set in Archivo + Instrument Serif + IBM Plex Mono</span>
-          <span>Crafted for lumenden.com</span>
-          <span>Last pushed {year}</span>
         </div>
       </div>
     </footer>

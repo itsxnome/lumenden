@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { DisplayWord } from "@/components/DisplayWord";
 import styles from "@/components/ui.module.css";
 import { site } from "@/data/site";
 
@@ -12,20 +13,21 @@ export default function ContactPage() {
   return (
     <div className="page">
       <div className="shell sectionPad">
-        <div className="sectionRail">
+        <div className="railRow">
           <p className="kicker">
-            <span className="kickerDot" aria-hidden />
             Contact
           </p>
           <p className="kicker">{site.email}</p>
         </div>
-        <h1 className="h1">
-          Say <span className="accent">hello.</span>
-        </h1>
-        <p className="lede" style={{ marginTop: 16 }}>
-          Shopify apps, WhatsApp systems, backend APIs, automations — tell me what
-          you&apos;re stuck on and I&apos;ll reply.
-        </p>
+        <div className="displayHead">
+          <h1 className="display">
+            <DisplayWord>CONTACT</DisplayWord>
+          </h1>
+          <p className="lede">
+            Tell me what&apos;s broken. Shopify apps, WhatsApp systems, backend APIs or
+            automations — say what you&apos;re stuck on and I&apos;ll reply.
+          </p>
+        </div>
 
         <div className={`${styles.split2} section`}>
           <div className={styles.panel}>

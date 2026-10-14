@@ -1,108 +1,110 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import type { Project } from "@/data/site";
 import styles from "./ui.module.css";
 
-const spanClass: Record<Project["size"], string> = {
-  xl: "span8",
-  lg: "span4",
-  md: "span6",
-  sm: "span4",
-};
+/** Five hues, cycled by position so no two neighbours share a colour. */
+const ACCENTS = ["c1", "c2", "c3", "c4", "c5"] as const;
 
+export function accentFor(index: number) {
+  return ACCENTS[index % ACCENTS.length];
+}
+
+/**
+ * A project as a two-part plate: a colour field carrying the artwork on the
+ * left, the facts on the right. The screenshot floats on the colour with its
+ * own shadow rather than being cropped into a frame — which is what lets a
+ * dense product UI still read as a designed object at this size.
+ */
 export function ProjectCard({
   project,
-  sized = true,
   index,
-  variant = "grid",
-  accent = "#7a9eff",
-  featured = false,
+  compact = false,
 }: {
   project: Project;
-  sized?: boolean;
-  index?: number;
-  variant?: "grid" | "slide" | "lineup";
-  accent?: string;
-  featured?: boolean;
+  index: number;
+  compact?: boolean;
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const isLineup = variant === "lineup";
-  void index;
+  const c = accentFor(index);
+  // Fall back to the first gallery frame so a project with artwork only in its
+  // gallery still gets a filled colour panel rather than an empty block.
+  const shot = project.image ?? project.poster ?? project.icon ?? project.gallery?.[0];
+  const isIcon = !project.image && !project.poster && Boolean(project.icon);
+
+  const style = {
+    "--accent": `var(--${c})`,
+    "--accent-ink": `var(--${c}-ink)`,
+    "--accent-soft": `var(--${c}-soft)`,
+  } as CSSProperties;
 
   return (
     <Link
       href={`/work/${project.slug}`}
-      className={[
-        isLineup
-          ? styles.lineupCard
-          : variant === "slide"
-            ? styles.slideCard
-            : sized
-              ? spanClass[project.size]
-              : styles.libraryCard,
-        styles.card,
-        isLineup ? styles.cardLineup : "",
-        featured ? styles.lineupFeatured : "",
-      ]
+      className={[styles.card, compact ? styles.cardCompact : ""]
         .filter(Boolean)
         .join(" ")}
-      style={isLineup ? ({ ["--card-accent"]: accent } as CSSProperties) : undefined}
-      onMouseEnter={() => void videoRef.current?.play().catch(() => undefined)}
-      onMouseLeave={() => {
-        if (!videoRef.current) return;
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }}
-      onFocus={() => void videoRef.current?.play().catch(() => undefined)}
-      onBlur={() => {
-        if (!videoRef.current) return;
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }}
+      style={style}
     >
-      {isLineup ? (
-        <div className={styles.lineupLabel}>
-          <span className={styles.lineupCat}>{project.eyebrow}</span>
-        </div>
-      ) : null}
-
-      <div className={styles.cardMedia}>
-        {project.video ? (
-          <video
-            ref={videoRef}
-            src={project.video}
-            poster={project.poster || project.image}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        ) : project.image ? (
-          <Image
-            src={project.image}
-            alt=""
-            fill
-            sizes={isLineup ? "(max-width: 900px) 100vw, 25vw" : "(max-width: 900px) 100vw, 33vw"}
-            style={{ objectFit: "cover", objectPosition: "center center" }}
-          />
-        ) : (
-          <div className={styles.cardMediaFallback} />
-        )}
+      <div
+        className={[styles.cardPanel, shot ? "" : styles.cardPanelBare]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <span className={styles.cardNum} aria-hidden>
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        {shot ? (
+          <div
+            className={[styles.cardShot, isIcon ? styles.cardShotIcon : ""]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            <Image
+              src={shot}
+              alt=""
+              fill
+              sizes={compact ? "(max-width: 900px) 90vw, 260px" : "(max-width: 900px) 90vw, 420px"}
+            />
+          </div>
+        ) : null}
       </div>
 
       <div className={styles.cardBody}>
-        <div className={styles.cardMeta}>
-          <span className={styles.badge}>{project.category}</span>
-          <span className={`${styles.badge} ${styles.badgeAccent}`}>{project.status}</span>
-        </div>
+        <p className={styles.cardEyebrow}>
+          <span className={styles.cardDot} aria-hidden />
+          {String(index + 1).padStart(2, "0")} / {project.category}
+        </p>
+
         <h3 className={styles.cardTitle}>{project.title}</h3>
         <p className={styles.cardSummary}>{project.summary}</p>
-        <p className={styles.cardImpact}>{project.impact}</p>
+
+        {!compact ? (
+          <>
+            <dl className={styles.cardFacts}>
+              <div>
+                <dt>Stack</dt>
+                <dd>{project.stack.slice(0, 3).join(", ")}</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>{project.status}</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>{project.eyebrow}</dd>
+              </div>
+            </dl>
+
+            <p className={styles.cardImpact}>
+              <span className={styles.cardPill}>{project.status}</span>
+              {project.impact}
+            </p>
+          </>
+        ) : null}
+
         <span className={styles.cardCta}>
-          Read more <span aria-hidden>↗</span>
+          Read the case <span aria-hidden>→</span>
         </span>
       </div>
     </Link>

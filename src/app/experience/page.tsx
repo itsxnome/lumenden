@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
+import { DisplayWord } from "@/components/DisplayWord";
 import styles from "@/components/ui.module.css";
 import { experience, site } from "@/data/site";
 
@@ -49,20 +50,21 @@ export default function ExperiencePage() {
   return (
     <div className="page">
       <div className="shell sectionPad">
-        <div className="sectionRail">
+        <div className="railRow">
           <p className="kicker">
-            <span className="kickerDot" aria-hidden />
             Experience
           </p>
           <p className="kicker">6+ years</p>
         </div>
-        <h1 className="h1">
-          Where I&apos;ve <span className="accent">worked.</span>
-        </h1>
-        <p className="lede" style={{ marginTop: 16 }}>
-          Same companies, different kinds of work — Shopify, backend, automation — plus
-          products I built myself like EasyCloudAPI.
-        </p>
+        <div className="displayHead">
+          <h1 className="display">
+            <DisplayWord>RESUME</DisplayWord>
+          </h1>
+          <p className="lede">
+            Where the hours went — same companies, different kinds of work, plus the
+            products I built myself.
+          </p>
+        </div>
 
         <div className={`${styles.panel} section`}>
           <p className="kicker" style={{ marginBottom: 16 }}>

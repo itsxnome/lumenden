@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/Button";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectIndex } from "@/components/ProjectIndex";
 import styles from "@/components/ui.module.css";
 import { getProject, projects } from "@/data/site";
 
@@ -31,18 +31,28 @@ export default async function ProjectPage({ params }: Props) {
     <div className="page">
       <article className="shell">
         <p className="kicker">
-          <span className="kickerDot" aria-hidden />
           <Link href="/work">Work</Link>
-          <span className="faint"> / {project.category}</span>
+          <span className="muted"> / {project.category}</span>
         </p>
 
-        <div className={styles.detailHero}>
+        <div
+          className={[
+            styles.detailHero,
+            // Icon-only projects read better as title-beside-mark than as a
+            // small square stranded under the heading.
+            !project.video && !project.image && project.icon
+              ? styles.detailHeroIcon
+              : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           <div>
             <div className={styles.cardMeta} style={{ marginTop: 14 }}>
               <span className={styles.badge}>{project.eyebrow}</span>
               <span className={`${styles.badge} ${styles.badgeAccent}`}>{project.status}</span>
             </div>
-            <h1 className="h1" style={{ marginTop: 14, fontSize: "var(--fs-4xl)" }}>
+            <h1 className="h1" style={{ marginTop: 14 }}>
               {project.title}
             </h1>
             <p className="lede" style={{ marginTop: 14 }}>
@@ -50,8 +60,11 @@ export default async function ProjectPage({ params }: Props) {
             </p>
           </div>
 
-          <div className={styles.detailMedia}>
-            {project.video ? (
+          {/* Only render a frame when there is something to put in it. The
+              16:9 box has its own border and background, so rendering it
+              empty produced a large blank panel. */}
+          {project.video ? (
+            <div className={styles.detailMedia}>
               <video
                 src={project.video}
                 poster={project.poster || project.image}
@@ -59,7 +72,9 @@ export default async function ProjectPage({ params }: Props) {
                 playsInline
                 preload="metadata"
               />
-            ) : project.image ? (
+            </div>
+          ) : project.image ? (
+            <div className={styles.detailMedia}>
               <Image
                 src={project.image}
                 alt={`${project.title} visual`}
@@ -68,14 +83,23 @@ export default async function ProjectPage({ params }: Props) {
                 style={{ objectFit: "cover" }}
                 priority
               />
-            ) : null}
-          </div>
+            </div>
+          ) : project.icon ? (
+            <div className={styles.detailIcon}>
+              <Image
+                src={project.icon}
+                alt={`${project.title} app icon`}
+                fill
+                sizes="220px"
+                priority
+              />
+            </div>
+          ) : null}
         </div>
 
         <div className={styles.overviewBlock}>
           <div>
             <p className="kicker">
-              <span className="kickerDot" aria-hidden />
               High-level
             </p>
             <h2 className="h2" style={{ marginTop: 10 }}>
@@ -94,20 +118,24 @@ export default async function ProjectPage({ params }: Props) {
         </div>
 
         <div className={styles.detailGrid}>
-          <div className="prose">
-            {project.body.map((para) => (
-              <p key={para}>{para}</p>
-            ))}
+          <div>
+            <div className="prose">
+              {project.body.map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+            </div>
+            {/* Outside .prose — that caps at 62ch and squeezed the screenshots
+                down to text width, where none of the UI was readable. */}
             {project.gallery && project.gallery.length > 0 ? (
-              <div className={styles.gallery} aria-label="Project gallery">
+              <div className={styles.gallery}>
                 {project.gallery.map((src) => (
                   <div key={src} className={styles.galleryItem}>
                     <Image
                       src={src}
-                      alt=""
+                      alt={`${project.title} screenshot`}
                       fill
-                      sizes="(max-width: 900px) 100vw, 40vw"
-                      style={{ objectFit: "cover" }}
+                      sizes="(max-width: 900px) 100vw, 45vw"
+                      style={{ objectFit: "cover", objectPosition: "top left" }}
                     />
                   </div>
                 ))}
@@ -118,7 +146,7 @@ export default async function ProjectPage({ params }: Props) {
           <aside className={styles.panel}>
             <h2 className="h3">Impact</h2>
             <p style={{ marginTop: 10, fontWeight: 600 }}>{project.impact}</p>
-            <h3 className="h3" style={{ marginTop: 24, fontSize: "1.15rem" }}>
+            <h3 className="h3" style={{ marginTop: 24 }}>
               Stack
             </h3>
             <div className="stack" style={{ marginTop: 12 }}>
@@ -128,7 +156,7 @@ export default async function ProjectPage({ params }: Props) {
                 </span>
               ))}
             </div>
-            <h3 className="h3" style={{ marginTop: 24, fontSize: "1.15rem" }}>
+            <h3 className="h3" style={{ marginTop: 24 }}>
               Tags
             </h3>
             <div className="stack" style={{ marginTop: 12 }}>
@@ -150,16 +178,12 @@ export default async function ProjectPage({ params }: Props) {
         </div>
 
         <section className="section" aria-labelledby="related-title">
-          <div className="sectionHead">
+          <div className="railRow">
             <h2 id="related-title" className="h2">
               Related
             </h2>
           </div>
-          <div className="bento">
-            {related.map((item) => (
-              <ProjectCard key={item.slug} project={item} />
-            ))}
-          </div>
+          <ProjectIndex projects={related} />
         </section>
       </article>
     </div>

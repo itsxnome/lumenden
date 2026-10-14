@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { WorkFilters } from "@/components/WorkFilters";
 import { projects, site } from "@/data/site";
+import { DisplayWord } from "@/components/DisplayWord";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -10,22 +11,20 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <div className="page">
-      <div className="shell sectionPad">
-        <div className="sectionRail">
-          <p className="kicker">
-            <span className="kickerDot" aria-hidden />
-            Work
+      <div className="shell">
+        <p className="kicker">Work</p>
+
+        <div className="displayHead">
+          <h1 className="display">
+            <DisplayWord>WORK</DisplayWord>
+          </h1>
+          <p className="lede">
+            {projects.length} systems, from client Shopify builds to products I own.
+            Each one opens a write-up with what I built and how it hangs together.
           </p>
-          <p className="kicker">{projects.length} projects</p>
         </div>
-        <h1 className="h1">
-          Project <span className="accent">index.</span>
-        </h1>
-        <p className="lede" style={{ marginTop: 16 }}>
-          Filter by type. Each card opens a write-up with what I built and how it hangs
-          together.
-        </p>
-        <div style={{ marginTop: 32 }}>
+
+        <div className="section">
           <WorkFilters projects={projects} />
         </div>
       </div>

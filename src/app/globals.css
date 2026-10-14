@@ -8,71 +8,29 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--bg);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(242, 241, 238, 0.28) transparent;
-}
-
-html::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-html::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-html::-webkit-scrollbar-thumb {
-  background: rgba(242, 241, 238, 0.22);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  border-radius: 999px;
-}
-
-html::-webkit-scrollbar-thumb:hover {
-  background: rgba(242, 241, 238, 0.4);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-/* Custom ruler replaces the native bar on desktop — no double scrollbar */
-html[data-ruler="on"] {
-  scrollbar-width: none;
-}
-
-html[data-ruler="on"]::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  display: none;
-}
-
-/* Ruler floats in the side margin — never pad body (that shoved layout left) */
-html[data-ruler="on"] body {
-  padding-right: 0;
-}
-
-html {
+  /* WCAG 2.2 "Focus Not Obscured": the sticky header would otherwise cover
+     whatever the skip link and in-page anchors land on. */
+  scroll-padding-top: calc(var(--header-h) + var(--s-4));
+  background: var(--paper);
   overflow-x: clip;
 }
 
 body {
-  --font-body: var(--font-sans), Archivo, system-ui, sans-serif;
-  --font-display: var(--font-serif), "Instrument Serif", Georgia, serif;
+  --font-body: var(--font-sans), "Avenir Next", system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-sans), system-ui, sans-serif;
   --font-code: var(--font-mono), ui-monospace, Menlo, monospace;
 
   margin: 0;
   min-height: 100dvh;
   overflow-x: clip;
   color: var(--text);
-  background: var(--bg);
+  background: var(--paper);
   font-family: var(--font-body);
   font-size: var(--fs-md);
-  font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
 
 img,
 video {
@@ -108,66 +66,129 @@ ol {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
+  border-radius: var(--r-sm);
 }
 
 ::selection {
-  background: rgba(106, 158, 255, 0.35);
-  color: var(--text);
+  background: var(--sand);
+  color: #fff;
 }
 
-.skipLink {
-  position: absolute;
-  left: var(--s-4);
-  top: -80px;
-  z-index: 100;
-  padding: var(--s-2) var(--s-4);
-  background: var(--text);
-  color: var(--text-invert);
-  border-radius: var(--radius-md);
-}
-
-.skipLink:focus-visible {
-  top: var(--s-4);
-}
-
+/* ── Layout ─────────────────────────────────────────────── */
 .shell {
-  width: min(calc(100% - 2 * var(--frame-gutter)), var(--max));
+  width: min(calc(100% - 2 * var(--gutter)), var(--max));
   margin-inline: auto;
 }
 
 .page {
-  padding-block: 0 var(--s-11);
-}
-
-.section {
-  margin-top: 0;
-  border-top: 1px solid var(--line);
+  padding-block: var(--s-9) var(--section);
 }
 
 .sectionPad {
-  padding-block: clamp(2.75rem, 6vw, 5rem);
+  padding-block: 0;
 }
 
-.sectionHead {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--s-6);
-  margin-bottom: var(--s-7);
+.section {
+  margin-top: var(--section);
 }
 
-.sectionRail {
+/* ── Type ───────────────────────────────────────────────── */
+
+/* The oversized page word. Letters get a little rotation so it
+   reads as drawn rather than typed. */
+.display {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.02em;
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.display > span {
+  display: inline-block;
+  transform: rotate(var(--tilt, 0deg)) translateY(var(--lift, 0));
+  transition: transform var(--t-mid) var(--ease-pop);
+}
+
+/* Straighten on hover — the word "snaps to attention". */
+.display:hover > span {
+  transform: rotate(0deg) translateY(0);
+}
+
+/* Oversized page word on the left, intro paragraph on the right. */
+.displayHead {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  gap: var(--s-7) var(--s-9);
+  align-items: end;
+  margin-top: var(--s-4);
+}
+
+@media (max-width: 860px) {
+  .displayHead {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.h3 {
+  font-family: var(--font-body);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.lede {
+  max-width: 52ch;
+  color: var(--text-soft);
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.muted {
+  color: var(--text-soft);
+}
+
+.prose {
+  display: grid;
   gap: var(--s-4);
-  padding: var(--s-4) 0;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: var(--s-7);
+  max-width: 64ch;
+  color: var(--text-soft);
+  line-height: 1.7;
+  text-wrap: pretty;
 }
 
+.prose strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Small gold label above a heading. */
 .kicker {
   display: inline-flex;
   align-items: center;
@@ -175,81 +196,13 @@ ol {
   font-family: var(--font-code);
   font-size: var(--fs-xs);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-.kickerDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 1px;
-  background: var(--accent);
-  box-shadow: none;
+  color: var(--sand);
 }
 
 .accent {
-  color: var(--accent);
-  font-style: normal;
-}
-
-.displayName {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  font-style: italic;
-}
-
-.h1 {
-  font-family: var(--font-body);
-  font-size: var(--fs-5xl);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
-}
-
-.h2 {
-  font-family: var(--font-body);
-  font-size: var(--fs-3xl);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-}
-
-.h3 {
-  font-size: var(--fs-2xl);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-.lede {
-  max-width: 48ch;
-  color: var(--text-soft);
-  font-size: var(--fs-lg);
-  line-height: 1.55;
-}
-
-.muted {
-  color: var(--text-soft);
-}
-
-.faint {
-  color: var(--text-faint);
-}
-
-.prose {
-  display: grid;
-  gap: var(--s-4);
-  max-width: 62ch;
-  color: var(--text-soft);
-  font-size: var(--fs-md);
-  line-height: 1.7;
-}
-
-.prose strong {
-  color: var(--text);
-  font-weight: 600;
+  color: var(--sand);
 }
 
 .stack {
@@ -261,34 +214,49 @@ ol {
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.3rem 0.55rem;
-  border-radius: var(--radius-md);
-  box-shadow: inset 0 0 0 1px var(--line-strong);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-2);
+  background: var(--card);
   color: var(--text-soft);
   font-family: var(--font-code);
   font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.bento {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.span7 { grid-column: span 7; }
-.span5 { grid-column: span 5; }
-.span6 { grid-column: span 6; }
-.span4 { grid-column: span 4; }
-.span8 { grid-column: span 8; }
-.span12 { grid-column: span 12; }
+.skipLink {
+  position: absolute;
+  left: var(--s-4);
+  top: -80px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--s-2) var(--s-4);
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--r-pill);
+}
 
+.skipLink:focus-visible {
+  top: var(--s-4);
+}
+
+/* ── Entrance ───────────────────────────────────────────── */
 .rise {
-  animation: rise var(--dur-slow) var(--ease) both;
+  animation: rise var(--t-slow) var(--ease) both;
 }
 
 .riseDelay1 { animation-delay: 60ms; }
@@ -298,7 +266,7 @@ ol {
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -307,57 +275,8 @@ ol {
 }
 
 @media (max-width: 900px) {
-  .shell {
-    width: min(100% - 1.25rem, var(--max));
-  }
-
-  .span7,
-  .span5,
-  .span6,
-  .span4,
-  .span8 {
-    grid-column: span 12;
-  }
-
-  .sectionHead {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .sectionRail {
-    flex-wrap: wrap;
-    gap: var(--s-2);
-  }
-
   .page {
-    padding-block: 0 var(--s-9);
-  }
-
-  .h1 {
-    font-size: clamp(2.1rem, 9vw, 3.25rem);
-  }
-
-  .h2 {
-    font-size: clamp(1.65rem, 6vw, 2.25rem);
-  }
-
-  .lede {
-    font-size: var(--fs-md);
-    max-width: none;
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --frame-gutter: 0.85rem;
-  }
-
-  .shell {
-    width: min(100% - 1rem, var(--max));
-  }
-
-  .sectionPad {
-    padding-block: 2rem;
+    padding-block: var(--s-7) var(--s-10);
   }
 }
 
@@ -369,4 +288,30 @@ ol {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+
+  /* Static transforms are LAYOUT, not motion: the hero letters' tilt, scale
+     and vertical offset — and the display word's rotation — are the design,
+     and flattening them removes the thing rather than calming it. Only
+     animation and transitions are switched off (handled by the rule above).
+     Everything here just pins an end state the cancelled animations would
+     otherwise have left unset. */
+  [class*="outlinedWord"] text {
+    stroke-dashoffset: 0 !important;
+  }
+
+  [class*="heroLetter"],
+  [class*="heroPortrait"] {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+}
+
+/* A label row: kicker on the left, meta or an action on the right. */
+.railRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-5);
 }
