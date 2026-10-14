@@ -19,6 +19,7 @@ export function ProjectColumn({
 }) {
   const c = accentFor(index);
   const shot = project.icon ?? project.image ?? project.poster ?? project.gallery?.[0];
+  const isIcon = Boolean(project.icon);
 
   const style = {
     "--accent": `var(--${c})`,
@@ -42,7 +43,11 @@ export function ProjectColumn({
             {index + 1}
           </span>
           {shot ? (
-            <span className={styles.colDev}>
+            <span
+              className={[styles.colDev, isIcon ? styles.colDevIcon : ""]
+                .filter(Boolean)
+                .join(" ")}
+            >
               <Image src={shot} alt="" fill sizes="(max-width: 700px) 60vw, 220px" />
             </span>
           ) : null}

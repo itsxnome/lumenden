@@ -299,8 +299,8 @@ ol {
     stroke-dashoffset: 0 !important;
   }
 
-  /* heroPortrait centering is layout (translateX), not motion — leave it.
-     Desktop uses -44% (head in the T|F gap); phone overrides to -50%. */
+  /* heroPortrait centering is layout (translate), not motion — leave it.
+     Desktop / tablet: left + up into the T|F gap; phone keeps a similar nudge. */
   [class*="heroLetter"] {
     opacity: 1 !important;
     translate: none !important;
@@ -308,12 +308,12 @@ ol {
 
   [class*="heroPortrait"] {
     opacity: 1 !important;
-    transform: translateX(-44%) !important;
+    transform: translateX(-56%) translateY(-10%) !important;
   }
 
   @media (max-width: 640px) {
     [class*="heroPortrait"] {
-      transform: translateX(-50%) !important;
+      transform: translateX(-54%) translateY(-4%) !important;
     }
   }
 }

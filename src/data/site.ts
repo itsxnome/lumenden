@@ -292,8 +292,8 @@ export const projects: Project[] = [
     category: "Automation",
     status: "Live",
     icon: "/work/icons/n8.png",
-    image: "/work/shopify/n8n-jobs.png",
-    gallery: ["/work/shopify/n8n-jobs.png"],
+    image: "/work/covers/automation.jpg",
+    gallery: ["/work/covers/automation.jpg"],
   },
   {
     slug: "shopify-apps",

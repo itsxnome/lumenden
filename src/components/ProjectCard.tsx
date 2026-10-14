@@ -27,10 +27,10 @@ export function ProjectCard({
   compact?: boolean;
 }) {
   const c = accentFor(index);
-  // Prefer the square Notion mark so /work stays consistent; covers are for
-  // case pages / galleries where full UI reads better at larger size.
-  const shot = project.icon ?? project.image ?? project.poster ?? project.gallery?.[0];
-  const isIcon = Boolean(project.icon) || (!project.image && !project.poster && Boolean(shot));
+  // Prefer the designed UI cover (paper mock) on /work; fall back to the
+  // square mark only when no cover exists.
+  const shot = project.image ?? project.poster ?? project.icon ?? project.gallery?.[0];
+  const isIcon = !project.image && !project.poster && Boolean(project.icon);
 
   const style = {
     "--accent": `var(--${c})`,

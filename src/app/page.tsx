@@ -91,11 +91,11 @@ export default function HomePage() {
         </section>
 
         {/* ── Intro: badge + greeting + stats ──────────────── */}
-        <section className={styles.frameSection} aria-labelledby="intro-title">
+        <section className={styles.introSection} aria-labelledby="intro-title">
           <div className={styles.introGrid}>
             <IdBadge />
 
-            <div>
+            <div className={styles.introCopy}>
               <h2 id="intro-title" className={styles.introTitle}>
                 Hi, I&apos;m <span className="accent">Saad.</span>
               </h2>

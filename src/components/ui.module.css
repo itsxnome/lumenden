@@ -265,35 +265,30 @@
 }
 
 .cardShot img {
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: top left;
 }
 
 /* Square product marks: smaller, centred, not stretched to 16:10. */
 .cardShotIcon {
-  width: min(152px, 52%);
-  height: auto;
-  aspect-ratio: 1 / 1;
+  width: min(160px, 52%);
+  aspect-ratio: 1;
   border-radius: var(--r-lg);
-  background: transparent;
-  box-shadow: none;
+  background: #fff;
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
 .cardShotIcon img {
-  object-fit: contain !important;
-  object-position: center !important;
-  inset: 10% !important;
+  object-fit: contain;
+  object-position: center;
+  inset: 12% !important;
   width: auto !important;
   height: auto !important;
 }
 
 .card:hover .cardShot {
-  transform: translateY(-4px) scale(1.01);
-}
-
-.card:hover .cardShotIcon {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-6px) scale(1.02);
 }
 
 .cardBody {
@@ -609,7 +604,8 @@
 
 /* ═══ Home hero ════════════════════════════════════════════ */
 .craftPage {
-  padding-bottom: var(--section);
+  /* Footer owns the closing gap — avoid stacking padding here + footer margin. */
+  padding-bottom: 0;
 }
 
 .craftFrame {
@@ -795,8 +791,9 @@
 .proofThumb {
   position: relative;
   aspect-ratio: 1;
+  width: 100%;
   max-width: 280px;
-  overflow: visible;
+  overflow: hidden;
   border-radius: var(--r-md);
   border: 1px solid var(--line);
   background: var(--paper-2);
@@ -810,16 +807,16 @@
 }
 
 .proofThumb img {
-  object-fit: contain;
-  object-position: center;
-  padding: 8%;
+  object-fit: contain !important;
+  object-position: center !important;
+  padding: 14%;
 }
 
 .proofCap {
   font-family: var(--font-code);
   font-size: var(--fs-xs);
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  color: var(--sand);
 }
 
 /* ═══ Hire CTA (the dark block) ════════════════════════════ */
@@ -1206,7 +1203,7 @@
 /* ═══ Footer ═══════════════════════════════════════════════ */
 .footer {
   margin-top: var(--section);
-  padding: var(--s-10) 0 var(--s-7);
+  padding: var(--s-8) 0 var(--s-7);
   background: var(--paper-2);
   border-top: 1px solid var(--line);
 }
@@ -1349,8 +1346,8 @@
 
 /* Portrait: width-driven like the Ines/Skillry reference so it scales the
    same way on tablet/phone. transform (not the translate property) so
-   prefers-reduced-motion cannot wipe horizontal centering. -44% centres the
-   head in the PORT|FOLIO gap (raised hand sits left of the box centre). */
+   prefers-reduced-motion cannot wipe horizontal centering. -52% / -6% nudges
+   the head left into the T|F gap and slightly up under the letters. */
 .heroPortrait {
   position: absolute;
   z-index: 3;
@@ -1358,7 +1355,7 @@
   bottom: 0;
   width: clamp(220px, 30vw, 380px);
   aspect-ratio: 2 / 3;
-  transform: translateX(-44%);
+  transform: translateX(-56%) translateY(-10%);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(#000 88%, transparent);
   mask-image: linear-gradient(#000 88%, transparent);
@@ -1373,11 +1370,11 @@
 @keyframes portraitIn {
   from {
     opacity: 0;
-    transform: translateX(-44%) translateY(20px);
+    transform: translateX(-56%) translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateX(-44%);
+    transform: translateX(-56%) translateY(-10%);
   }
 }
 
@@ -1445,7 +1442,7 @@
   }
 
   .heroPortrait {
-    transform: translateX(-50%);
+    transform: translateX(-54%) translateY(-4%);
     animation-name: portraitInMobile;
   }
 
@@ -1466,30 +1463,92 @@
 @keyframes portraitInMobile {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(20px);
+    transform: translateX(-54%) translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateX(-50%);
+    transform: translateX(-54%) translateY(-4%);
   }
 }
 
 /* ═══ Intro: badge + greeting ══════════════════════════════ */
+.introSection {
+  margin-top: clamp(8px, 1.5vw, 28px);
+}
+
 .introGrid {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(32px, 6vw, 96px);
-  align-items: center;
+  align-items: start;
 }
 
 .badgeWrap {
   position: relative;
   display: grid;
   justify-items: center;
-  padding-top: var(--s-7);
+  padding-top: 0;
 }
 
-/* Pivots from the clip above the card, not from its own centre. */
+/* Fabric straps + metal stitch clip (Skillry / Ines studio-pass). */
+.lanyard {
+  position: relative;
+  width: 120px;
+  height: 150px;
+  margin-bottom: -18px;
+  z-index: 1;
+}
+
+.lanyard::before,
+.lanyard::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  width: 22px;
+  height: 176px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #2b2b2b, #151515 45%, #2b2b2b);
+}
+
+.lanyard::before {
+  left: 22px;
+  transform: rotate(12deg);
+  transform-origin: bottom center;
+}
+
+.lanyard::after {
+  right: 22px;
+  transform: rotate(-12deg);
+  transform-origin: bottom center;
+}
+
+.stitch {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 0;
+  width: 46px;
+  height: 38px;
+  transform: translateX(-50%);
+  border-radius: 8px 8px 12px 12px;
+  background: linear-gradient(#d8d3c8, #b9b2a3);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.stitch::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 18px;
+  height: 20px;
+  transform: translateX(-50%);
+  border-radius: 0 0 9px 9px;
+  border: 4px solid #b9b2a3;
+  border-top: 0;
+}
+
+/* Pivots from the stitch above the card, not from its own centre. */
 .badgeSwing {
   position: relative;
   transform-origin: 50% -120px;
@@ -1502,67 +1561,75 @@
   transform: rotate(0deg);
 }
 
-.badgeClip {
-  position: absolute;
-  top: -26px;
-  left: 50%;
-  translate: -50% 0;
-  width: 26px;
-  height: 34px;
-  border-radius: 6px;
-  background: var(--ink);
-}
-
 .idCard {
   position: relative;
   display: block;
   width: clamp(250px, 24vw, 320px);
+  max-width: min(78vw, 290px);
   padding: 36px 18px 18px;
-  border-radius: var(--r-lg);
+  border-radius: 22px;
   background: linear-gradient(160deg, #ffffff, #f7f5f0);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  outline: none;
+}
+
+.badgeSlot {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 56px;
+  height: 9px;
+  transform: translateX(-50%);
+  border-radius: 9px;
+  background: var(--paper-2);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18);
 }
 
 .badgePhoto {
   position: relative;
   aspect-ratio: 4 / 4.4;
-  border-radius: var(--r-md);
+  border-radius: 14px;
   overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--outline);
+  background: #ede4d1;
 }
 
 .badgePhoto img {
   object-fit: contain !important;
   object-position: center bottom !important;
+  padding: 6% 8% 0;
 }
 
 .badgeMeta {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  gap: var(--s-3);
-  margin-top: var(--s-4);
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .badgeMeta b {
   display: block;
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
 }
 
 .badgeMeta small {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
   color: var(--text-muted);
-  font-size: var(--fs-xs);
+  font-size: 0.8rem;
 }
 
 .badgeId {
   font-family: var(--font-code);
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: var(--sand);
+  text-align: right;
+  line-height: 1.3;
   white-space: nowrap;
 }
 
@@ -1571,22 +1638,23 @@
   align-items: end;
   gap: 2px;
   height: 22px;
-  margin-top: var(--s-3);
+  margin-top: 12px;
   opacity: 0.85;
 }
 
 .badgeBars i {
-  flex: 1;
-  height: 60%;
+  display: block;
+  width: 2px;
+  height: 100%;
   background: var(--ink);
 }
 
 .badgeBars i:nth-child(3n) {
-  height: 100%;
+  width: 1px;
 }
 
 .badgeBars i:nth-child(4n) {
-  height: 40%;
+  width: 3px;
 }
 
 .badgeStripe {
@@ -1595,13 +1663,26 @@
   height: 7px;
   border-radius: 7px;
   overflow: hidden;
-  margin-top: var(--s-3);
+  margin-top: 12px;
 }
 
 .badgeStripe i:nth-child(1) { background: var(--c1); }
 .badgeStripe i:nth-child(2) { background: var(--c3); }
 .badgeStripe i:nth-child(3) { background: var(--c4); }
 .badgeStripe i:nth-child(4) { background: var(--c5); }
+
+/* Nudge the greeting up toward the hero so it sits nearer the lanyard top. */
+.introCopy {
+  margin-top: clamp(-8px, -1.2vw, 0px);
+  padding-top: clamp(8px, 2vw, 28px);
+}
+
+@media (min-width: 861px) {
+  .introCopy {
+    margin-top: -36px;
+    padding-top: 0;
+  }
+}
 
 .introTitle {
   font-family: var(--font-display);
@@ -1840,7 +1921,8 @@
   display: block;
   aspect-ratio: 1 / 1.9;
   border-radius: 20px;
-  overflow: hidden;
+  /* Clip plates + shadow so nothing hangs outside the colour card */
+  overflow: hidden !important;
   isolation: isolate;
   background: var(--accent);
   transition: transform 450ms var(--ease-out), box-shadow 450ms var(--ease-out);
@@ -1874,28 +1956,42 @@
 
 .colDev {
   position: absolute;
-  /* Keep marks clear of the rounded card edge so nothing clips */
-  inset: 14% 14% 40%;
+  /* Inset enough that the white plate + shadow stay inside the card */
+  inset: 10% 10% 38%;
   display: grid;
   place-items: center;
   border-radius: var(--r-md);
-  overflow: visible;
-  background: transparent;
-  box-shadow: none;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow);
   transition: transform 600ms var(--ease-out);
 }
 
+/* Coloured pad nested inside the white plate */
+.colDev::before {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border-radius: calc(var(--r-md) - 2px);
+  background: var(--accent-soft);
+  z-index: 0;
+}
+
 .colDev img {
+  z-index: 1;
   object-fit: contain !important;
   object-position: center !important;
-  /* Extra inner margin: fill images ignore padding reliably */
-  inset: 8% !important;
+  inset: 16% !important;
   width: auto !important;
   height: auto !important;
 }
 
+.colDevIcon {
+  /* same treatment — class kept for callers */
+}
+
 .colLink:hover .col .colDev {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .colGo {
@@ -1970,7 +2066,7 @@
   }
 
   .colDev {
-    inset: 7% 10% 30%;
+    inset: 10% 11% 34%;
   }
 }
 
